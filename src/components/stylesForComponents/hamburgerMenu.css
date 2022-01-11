@@ -1,0 +1,98 @@
+#menu__toggle {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+}
+#menu__toggle:checked + .menu__btn > span {
+  transform: rotate(45deg);
+}
+#menu__toggle:checked + .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+#menu__toggle:checked + .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+  left: 0 !important;
+  /* transition: left 0.25ms ease 0ms, transform 0ms linear 0.25ms; */
+  transform: translateX(0);
+}
+.menu__btn {
+  position: absolute;
+  /* top: 0.2rem;
+  left: 0.2rem; */
+  width: 1.5rem;
+  height: 0%;
+  /* width: 26px; */
+  cursor: pointer;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #616161;
+  transition-duration: 0.25s;
+  top: -1px;
+}
+.menu__btn > span::before {
+  content: "";
+  top: -1ex;
+}
+.menu__btn > span::after {
+  content: "";
+  top: 1ex;
+}
+.menu__box {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: #eceff1;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  /* transition: left 0.25s ease 0ms, transform 0ms linear 0ms; */
+  transform: translateX(-100%);
+}
+.menu__box li {
+  position: relative;
+}
+.menu__item {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: 0.25s;
+}
+.menu__box li:nth-child(1) {
+  margin-bottom: 10%;
+}
+.menu__item:hover {
+  background-color: #cfd8dc;
+}
+.transition_opening {
+  transition: left 0.25s ease 0.1ms, transform 0ms linear 0s;
+}
+.transition_closing {
+  transition: left 0.25s ease 0.1ms, transform 0ms linear 0.25s;
+}

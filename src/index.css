@@ -1,13 +1,1877 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+/*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+
+/*
+Document
+========
+*/
+
+/* imports */
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+/* Raleway */
+
+@import url("https://use.typekit.net/pti4cpg.css");
+/* Muli */
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway&family=Source+Sans+Pro:wght@400;600&display=swap");
+/* source sans pro */
+
+/**
+Use a better box model (opinionated).
+*/
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/**
+Use a more readable tab size (opinionated).
+*/
+
+:root {
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    --headerHeight: 40px;
+    /* My collor pallete */
+    --main-button-green: #10b981;
+    --main-button-green-hover: #34d399;
+    --main-button-green-active: #4cd3a6;
+    --card-bg-overlay: #282c34;
+    --main-bg-white: #e4e4e4;
+    --main-bg-main: var(--main-orange);
+    --main-bg-second: var(--main-gray2);
+    --main-orange: #c48237;
+    --main-orange2: #ff9900;
+    --main-white: #ffffff;
+    --main-gray1: #cccccc;
+    --main-gray2: #afafaf;
+    --main-gray3: #555555;
+    --main-gray4: #313131;
+    --main-gray5: #181818;
+    --main-black: #000000;
+    --notes-bg: #b3b3b3c7;
+    --second-darkblue: #1717a0;
+    --second-lightblue: #82d5d5;
+    --second-bg-main: var(--second-darkblue);
+    --second-bg-second: var(--second-lightblue);
+    /* ? My collor pallete */
+}
+
+/**
+1. Correct the line height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+*/
+
+html {
+    line-height: 1.15;
+    /* 1 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
+    scroll-behavior: smooth;
+}
+
+/*
+Sections
+========
+*/
+
+/**
+Remove the margin in all browsers.
+*/
+
+body {
+    margin: 0;
+}
+
+/**
+Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+*/
+
+body {
+    font-family: system-ui, -apple-system, /* Firefox supports this but not yet `system-ui` */
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/*
+Grouping content
+================
+*/
+
+/**
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+*/
+
+hr {
+    height: 0;
+    /* 1 */
+    color: inherit;
+    /* 2 */
+}
+
+/*
+Text-level semantics
+====================
+*/
+
+/**
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr[title] {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+}
+
+/**
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+/**
+1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+2. Correct the odd 'em' font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    /* 1 */
+    font-size: 1em;
+    /* 2 */
+}
+
+/**
+Add the correct font size in all browsers.
+*/
+
+small {
+    font-size: 80%;
+}
+
+/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/*
+Tabular data
+============
+*/
+
+/**
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+*/
+
+table {
+    text-indent: 0;
+    /* 1 */
+    border-color: inherit;
+    /* 2 */
+}
+
+/*
+Forms
+=====
+*/
+
+/**
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    /* 1 */
+    font-size: 100%;
+    /* 1 */
+    line-height: 1.15;
+    /* 1 */
+    margin: 0;
+    /* 2 */
+}
+
+/**
+Remove the inheritance of text transform in Edge and Firefox.
+1. Remove the inheritance of text transform in Firefox.
+*/
+
+button,
+select {
+    /* 1 */
+    text-transform: none;
+}
+
+/**
+Correct the inability to style clickable types in iOS and Safari.
+*/
+
+button,
+[type="button"] {
+    -webkit-appearance: button;
+}
+
+/**
+Remove the inner border and padding in Firefox.
+*/
+
+/**
+Restore the focus styles unset by the previous rule.
+*/
+
+/**
+Remove the additional ':invalid' styles in Firefox.
+See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
+*/
+
+/**
+Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+*/
+
+legend {
+    padding: 0;
+}
+
+/**
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+    vertical-align: baseline;
+}
+
+/**
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+/**
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+/**
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+/**
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to 'inherit' in Safari.
+*/
+
+/*
+Interactive
+===========
+*/
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+    display: list-item;
+}
+
+/**
+ * Manually forked from SUIT CSS Base: https://github.com/suitcss/base
+ * A thin layer on top of normalize.css that provides a starting point more
+ * suitable for web applications.
+ */
+
+/**
+ * Removes the default spacing and border for appropriate elements.
+ */
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+    margin: 0;
+}
+
+button {
+    background-color: transparent;
+    background-image: none;
+}
+
+/**
+ * Work around a Firefox/IE bug where the transparent `button` background
+ * results in a loss of the default `button` focus styles.
+ */
+
+button:focus {
+    /* outline: 1px dotted; */
+    outline: 5px auto -webkit-focus-ring-color;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Tailwind custom reset styles
+ */
+
+/**
+ * 1. Use the user's configured `sans` font-family (with Tailwind's default
+ *    sans-serif font stack as a fallback) as a sane default.
+ * 2. Use Tailwind's default "normal" line-height so the user isn' forced
+ *    to override it to ensure consistency even when using the default theme.
+ */
+
+html,
+body {
+    font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    line-height: 1.5;
+    /* font-family: muli, sans-serif; */
+    font-weight: 500;
+    font-style: normal;
+}
+
+/**
+ * 1. Prevent padding and border from affecting element width.
+ *
+ *    We used to set this in the html element and inherit from
+ *    the parent element for everything else. This caused issues
+ *    in shadow-dom-enhanced elements like <details> where the content
+ *    is wrapped by a div with box-sizing set to `content-box`.
+ *
+ *    https://github.com/mozdevs/cssremedy/issues/4
+ *
+ *
+ * 2. Allow adding a border to an element by just adding a border-width.
+ *
+ *    By default, the way the browser specifies that an element should have no
+ *    border is by setting it's border-style to `none` in the user-agent
+ *    stylesheet.
+ *
+ *    In order to easily add borders to elements by just setting the `border-width`
+ *    property, we change the default border-style for all elements to `solid`, and
+ *    use border-width to hide them instead. This way our `border` utilities only
+ *    need to set the `border-width` property instead of the entire `border`
+ *    shorthand, making our border utilities much more straightforward to compose.
+ *
+ *    https://github.com/tailwindcss/tailwindcss/pull/116
+ */
+
+*,
+::before,
+::after {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    /* 1 */
+    border-width: 0;
+    /* 2 */
+    border-style: solid;
+    /* 2 */
+    border-color: #e4e4e7;
+    /* 2 */
+}
+
+/*
+ * Ensure horizontal rules are visible by default
+ */
+
+hr {
+    border-top-width: 1px;
+}
+
+/**
+ * Undo the `border-style: none` reset that Normalize applies to images so that
+ * our `border-{width}` utilities have the expected effect.
+ *
+ * The Normalize reset is unnecessary for us since we default the border-width
+ * to 0 on all elements.
+ *
+ * https://github.com/tailwindcss/tailwindcss/issues/362
+ */
+
+img {
+    border-style: solid;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #a1a1aa;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #a1a1aa;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #a1a1aa;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #a1a1aa;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    color: #a1a1aa;
+}
+
+input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+    color: #a1a1aa;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #a1a1aa;
+}
+
+button {
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/**
+ * Reset links to optimize for opt-in styling instead of
+ * opt-out.
+ */
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+/**
+ * Reset form element properties that are easy to forget to
+ * style explicitly so you don't inadvertently introduce
+ * styles that deviate from your design system. These styles
+ * supplement a partial reset that is already applied by
+ * normalize.css.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    padding: 0;
+    line-height: inherit;
+    color: inherit;
+}
+
+/**
+ * Use the configured 'mono' font family for elements that
+ * are expected to be rendered with a monospace font, falling
+ * back to the system monospace stack if there is no configured
+ * 'mono' font family.
+ */
+
+pre,
+code,
+kbd,
+samp {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/**
+ * Make replaced elements `display: block` by default as that's
+ * the behavior you want almost all of the time. Inspired by
+ * CSS Remedy, with `svg` added as well.
+ *
+ * https://github.com/mozdevs/cssremedy/issues/14
+ */
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+}
+
+/* START HERE */
+
+/* MY  OWN elements */
+
+colors {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+red {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: rgb(232, 32, 32);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 5px;
+    border: 1px solid black;
+    content: "■";
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+green {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: rgb(55, 179, 51);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 5px;
+    border: 1px solid black;
+    content: "■";
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+gray {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: rgb(88, 88, 88);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 5px;
+    border: 1px solid black;
+    content: "■";
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+blue {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: rgb(14, 67, 167);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 5px;
+    border: 1px solid black;
+    content: "■";
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+white {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: rgb(228, 228, 231);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 5px;
+    border: 1px solid black;
+    content: "■";
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+/* end */
+
+body {
+    width: 100%;
+}
+
+.bg_red {
+    background-color: rgb(232, 32, 32) !important;
+    background-blend-mode: lighten;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0.4)));
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+}
+
+.bg_blue {
+    background-color: rgb(81, 129, 216) !important;
+    background-blend-mode: lighten;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0.4)));
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+}
+
+.bg_green {
+    background-color: rgb(55, 179, 51) !important;
+    background-blend-mode: lighten;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0.4)));
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+}
+
+.bg_gray {
+    background-color: rgb(150, 150, 150) !important;
+    background-blend-mode: lighten;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0.4)));
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+}
+
+.bg_white {
+    --bg-opacity: 1;
+    background-color: rgba(255, 255, 255, var(--bg-opacity)) !important;
+    background-blend-mode: lighten;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0.4)));
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+}
+
+.red {
+    color: rgb(232, 32, 32) !important;
+}
+
+.blue {
+    color: rgb(81, 129, 216) !important;
+}
+
+.green {
+    color: rgb(55, 179, 51) !important;
+}
+
+.gray {
+    color: rgb(150, 150, 150) !important;
+}
+
+.white {
+    color: rgb(255, 255, 255) !important;
+}
+
+.flex-between {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+.darken {
+    background-blend-mode: darken;
+}
+
+.flex-evenly {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.scale0 {
+    -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+            transform: scale(0);
+}
+
+.scale1 {
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+}
+
+/* end of multiname */
+
+.header {
+    z-index: 3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: var(--main-gray2);
+    --headerHeight: 40px;
+    max-height: var(--headerHeight);
+    position: fixed;
+    inset: auto 0 0 0;
+    min-width: 100%;
+    height: var(--headerHeight);
+    border-top: rgb(145, 145, 145) solid 1px;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.logo {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--main-gray3);
+    height: 100%;
+    height: 38px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: auto 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-line-pack: center;
+        align-content: center;
+}
+
+.logo>div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+}
+
+.imageIcon {
+    -webkit-transform: scale(73%);
+        -ms-transform: scale(73%);
+            transform: scale(73%);
+    width: 100%;
+    height: 100%;
+}
+
+.header .wrapper {
+    margin-left: 2rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    padding-left: 0.75rem;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding-right: 0.75rem;
+    /* padding-top: 0.2rem;
+  padding-bottom: 0.2rem; */
+    /* colors */
+    --bg-opacity: 0.5;
+    background-color: rgba(228, 228, 231, var(--bg-opacity));
+    --text-opacity: 1;
+    color: rgba(39, 39, 42, var(--text-opacity));
+    /* special stuff */
+    border-radius: 0.5rem;
+    -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.header .wrapper ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    min-width: 100%;
+    margin: 0 1rem;
+}
+
+#burgerMenuButtonWrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+#burgerMenuButton {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    right: 1.5em;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    top: auto;
+}
+
+.bookmark {
+    position: relative;
+    display: inline;
+    --bg-opacity: 1;
+    /* background-color: rgba(9, 142, 182, 0.589);
+  background-image: linear-gradient(210deg, rgba(9, 142, 182, var(--bg-opacity)), rgba(28, 236, 73, var(--bg-opacity))); */
+    background-color: rgba(255, 255, 255, var(--bg-opacity));
+    /* --border-opacity: 1;
+   border-color: rgba(161, 161, 170, var(--border-opacity));  */
+    border-radius: 0.5rem;
+    border-color: #818181;
+    border-bottom-width: 2px;
+    outline: white;
+    outline-offset: -2px;
+    outline-width: 2px;
+    /* outline-style: groove; */
+    /* cursor: pointer; */
+    line-height: 1.375;
+    cursor: pointer;
+    margin: auto;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 1.15rem;
+}
+
+.BackgroundColorDropMenu {
+    border-radius: 0.25rem;
+    left: 0;
+    top: 0;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    z-index: 4;
+    border: 1px solid rgba(161, 161, 170, 1) !important;
+    cursor: auto;
+    color: #000;
+    background-color: #fff;
+    display: none;
+    position: absolute;
+    /* min-width: 160px; */
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    font-size: 100%;
+    font-family: Verdana, sans-serif;
+    border-radius: 0.25rem;
+}
+
+.NotePopupTitle>span,
+.NotePopupTitle>input {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    right: 0;
+    top: 0;
+    font-family: Verdana, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    cursor: pointer;
+    border-radius: 0.25rem;
+}
+
+.NotePopupTitle>input {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-right: 1px;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.NotePopupTitle>span {
+    font-weight: bold;
+    padding: 10px;
+}
+
+.NotePopupTitle>input:focus-visible {
+    outline: inset blue 1px;
+}
+
+.main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-image: -o-linear-gradient( 205deg, var(--main-bg-main), var(--main-bg-second));
+    background-image: linear-gradient( 245deg, var(--main-bg-main), var(--main-bg-second));
+    min-height: 100vh;
+    margin: 0;
+}
+
+.main .wrapper {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 100vw;
+    margin-top: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    overflow-x: auto;
+    border-top: none;
+    border-radius: none;
+}
+
+#overlay {
+    /* transform: scale(1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: 3;
+  width: 100%;
+  height: 100%; */
+    display: none;
+    position: fixed;
+    /* Sit on top of the page content */
+    /* display: none; Hidden by default */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 2;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: -50vh;
+    left: -50vw;
+    background-color: transparent;
+    z-index: 4;
+    width: 200vw;
+    height: 200vh;
+}
+
+.Card {
+    position: relative;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    margin-bottom: 2.5rem;
+    padding: 0.75rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    --bg-opacity: 1;
+    background-color: var(--notes-bg);
+    --text-opacity: 1;
+    color: var(--main-gray4);
+    border-radius: 0.5rem;
+    -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    -webkit-transition: all;
+    -o-transition: all;
+    transition: all;
+    overflow: hidden;
+    -webkit-transition-duration: 150ms;
+         -o-transition-duration: 150ms;
+            transition-duration: 150ms;
+}
+
+.CardTitle {
+    min-width: 40%;
+    padding: 0.25rem;
+    color: var(--main-gray5);
+    position: relative;
+    word-wrap: anywhere;
+    outline: none !important;
+    font-family: muli, sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.blacker {
+    -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+            transform: scale(0);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--card-bg-overlay);
+    z-index: 2;
+    left: 0;
+    top: 0;
+}
+
+.LinksWrapper {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    border-color: rgba(161, 161, 170, var(--border-opacity));
+    border-bottom-width: 1px;
+    --bg-opacity: 1;
+    background-color: rgba(255, 255, 255, var(--bg-opacity));
+}
+
+.deleteCard,
+.deleteNote {
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    line-height: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+}
+
+.deleteCard svg {
+    height: 0.8rem !important;
+}
+
+.deleteNote svg {
+    height: 0.7rem !important;
+}
+
+.Note {
+    position: relative;
+    --border-opacity: 1;
+    border-color: rgba(161, 161, 170, var(--border-opacity));
+    border-radius: 0.25rem;
+    border-bottom-width: 1px;
+    cursor: auto;
+    line-height: 1.375;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.NoteTextarea {
+    min-width: 40%;
+    word-wrap: anywhere;
+    outline: none !important;
+    font-size: 1.2em;
+}
+
+.Note.NoteMark {
+    border-left: 0.6rem solid rgb(44, 185, 185);
+}
+
+.p-3 {
+    padding: 0.75rem;
+}
+
+.Note>span>div>p {
+    outline: none;
+}
+
+/* dropdownMenu */
+
+.NoteDropdownMenuOverlay {
+    background-color: transparent !important;
+}
+
+.dropdownMenu>.circle {
+    width: 3px;
+    height: 3px;
+    margin: 3px;
+    background: var(--main-black);
+    border-radius: 50%;
+    display: block;
+}
+
+.dropdownMenuWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.dropdownMenuWrapper>div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    cursor: pointer;
+}
+
+.dropdownMenuWrapper>div:hover,
+.dropdownMenuWrapper>div:focus {
+    outline: none;
+}
+
+.dropdownMenu {
+    border-radius: 0.25rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    cursor: pointer;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+    -webkit-transition: all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition: all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdownMenu>.circle:nth-child(4) {
+    position: absolute;
+    opacity: 0;
+    margin-left: -15px;
+}
+
+.dropdownMenu>.circle:nth-child(5) {
+    position: absolute;
+    opacity: 0;
+    margin-right: -15px;
+}
+
+.dropdownMenuClicked {
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+    opacity: 1;
+}
+
+.dropdownMenuClicked>.circle {
+    opacity: 1 !important;
+}
+
+/* END OF dropdownMenu SECTION */
+
+.NoteDropMenu {
+    border-radius: 0.25rem;
+    left: 0;
+    top: 0;
+    width: 210px;
+    z-index: 4;
+    border: 1px solid var(--main-gray2) !important;
+    cursor: auto;
+    color: var(--main-black);
+    background-color: var(--main-white);
+    display: none;
+    position: absolute;
+    /* min-width: 160px; */
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    font-size: 100%;
+    font-family: Verdana, sans-serif;
+    border-radius: 0.25rem;
+}
+
+.NoteDropMenu>span {
+    background-color: transparent !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-family: Verdana, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.border-radius-1 {
+    border-radius: 0.25rem;
+}
+
+.button {
+    border: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: inherit;
+    white-space: break-spaces;
+    background-color: var(--main-white);
+}
+
+.button:hover {
+    background-color: var(--main-gray2);
+}
+
+.button>span:hover,
+.button>div {
+    cursor: pointer;
+}
+
+.NoteBlockMenuWrapper>a {
+    border-radius: 0.25rem;
+    /* useless */
+    /* width: 100%;
+  display: block;
+  padding: 8px 16px;
+  text-align: left;
+  border: none;
+  white-space: normal;
+  float: none;
+  outline: 0; */
+}
+
+.DropMenuOverlay {
+    position: absolute;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+footer a {
+    display: block;
+    padding: 0.25rem;
+    --text-opacity: 1;
+    color: var(--main-gray3);
+}
+
+footer a:hover {
+    --text-opacity: 1;
+    color: var(--main-gray4);
+}
+
+.textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    --border-opacity: 1;
+    border-color: var(--main-gray1);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+    -webkit-box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.addNewForm {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    /* min-width: 150px; */
+    color: rgba(39, 39, 42);
+}
+
+.addNewCard {
+    margin-bottom: 2.5rem;
+}
+
+.addNew {
+    min-width: 15rem;
+    width: 100%;
+    padding: 0.5rem;
+    padding-right: 0rem;
+    --bg-opacity: 0.4;
+    background-color: rgba(255, 255, 255, var(--bg-opacity));
+    --placeholder-opacity: 1;
+    color: rgba(255, 255, 255, var(--placeholder-opacity));
+    font-weight: 700;
+    border-radius: 0.5rem;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.addNoteBtn {
+    --border-opacity: 1;
+    /* border-color: rgba(82, 82, 91, var(--border-opacity)); */
+    border-radius: 0.25rem;
+    /* box-shadow: 0px 1px 0 rgba(0, 0, 0, 0.35) ; */
+    font-weight: 600;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    --text-opacity: 1;
+    color: var(--main-white);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+    --bg-opacity: 1;
+    background-color: var(--main-button-green);
+    text-decoration: none;
+}
+
+.addNoteBtn:hover {
+    --bg-opacity: 1;
+    background-color: var(--main-button-green-hover);
+}
+
+.addNoteBtn:active {
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    /* box-shadow: 0px 1px 0 rgba(228, 228, 231, 1) inset; */
+    top: 1px;
+    /* border:1px inset; */
+}
+
+.addNew:focus {
+    --bg-opacity: 1;
+    --placeholder-opacity: 1;
+    color: var(--main-gray3);
+    /* box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); */
+}
+
+.addNoteBtn {
+    margin: 5px 0;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    -o-transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    --border-opacity: 1;
+    /* border-color: rgba(82, 82, 91, var(--border-opacity)); */
+    border-radius: 0.25rem;
+    /* box-shadow: 0px 1px 0 rgba(0, 0, 0, 0.35) ; */
+    font-weight: 600;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    --text-opacity: 1;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+    --bg-opacity: 1;
+    background-color: var(--main-button-green);
+    text-decoration: none;
+}
+
+.addNoteBtn::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 80%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(76, 211, 166);
+    border-radius: inherit;
+    -webkit-transform: translate3d(0, 0.75rem, -1rem);
+            transform: translate3d(0, 0.75rem, -1rem);
+    -webkit-transition: -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+    -o-transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.addNoteBtn:hover {
+    background: var(--main-button-green-hover);
+}
+
+.addNoteBtn:active {
+    background: var(--main-button-green-active);
+}
+
+#secondPage {
+    height: 100vh;
+    overflow: hidden;
+    background-image: -o-radial-gradient( var(--second-bg-main), var(--second-bg-second));
+    background-image: radial-gradient( var(--second-bg-main), var(--second-bg-second));
+    /* background-color: rgb(130, 213, 213); */
+}
+
+.wrapinfocard {
+    margin: auto;
+    position: relative;
+}
+
+.aboutMeInfoWrapper {
+    z-index: 1;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: auto;
+    height: 400px;
+    background-color: #8b8b8b;
+    border-radius: 0.75rem;
+    -webkit-transform: rotate(5deg);
+        -ms-transform: rotate(5deg);
+            transform: rotate(5deg);
+}
+
+.wrapinfocard>div:nth-child(2) {
+    position: static !important;
+}
+
+.wrapinfocard>div:nth-child(2) div {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+}
+
+.wrapinfocard>div:nth-child(3) {
+    position: static !important;
+}
+
+.wrapinfocard>div:nth-child(3) div {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+}
+
+.aboutMeInfoBackcard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: var(--main-gray2);
+    border-radius: 0.75rem;
+    /* transform: rotate(-5deg); */
+}
+
+.aboutMeInfoBackcard2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: var(--main-gray1);
+    border-radius: 0.75rem;
+    /* transform: rotate(-5deg); */
+}
+
+.aboutMeInfo {
+    width: 300px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+}
+
+.aboutMeInfo .AMwrapper {
+    position: relative;
+}
+
+.AMwrapper .AMtitle {}
+
+.AMwrapper .AMinfo {
+    /* display: none; */
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 120%; */
+    /* right: 5%; */
+    /* background-color: #fff; */
+    /* padding: .5rem; */
+    /* width: max-content; */
+    /* transform: translateY(-50%); */
+    border-radius: 0.25rem;
+    /* word-wrap: anywhere; */
+    width: 100%;
+    font-size: 0.8em;
+}
+
+/* .AMwrapper .AMinfo:after {
+} */
+
+.aboutMeInfo .AMwrapper:hover .AMinfo {
+    display: block;
+}
+
+.ov-hid {
+    overflow: hidden;
+}
+
+.mob-ov-hid {
+    overflow: hidden;
+}
+
+.mob-hide {
+    display: none !important;
+}
+
+.pc-hidden {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+/* login */
+
+.login-form {
+    display: -ms-grid;
+    display: grid;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-grid-columns: auto auto;
+    grid-template-columns: auto auto;
+}
+
+.login-form-x {
+    display: -ms-inline-grid;
+    display: inline-grid;
+    width: 10%;
+    align-self: flex-end;
+    position: absolute;
+    top: 0;
+    /* transform: translateX(-50%); */
+    margin: auto;
+    background: aqua;
+    -ms-grid-column-align: right;
+        justify-self: right;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 100%;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    border-radius: 0.25rem;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.menu-window-center {
+    z-index: 5;
+    /* transform: scale(1); */
+    cursor: initial;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+        -ms-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    background-color: var(--main-white);
+    overflow: hidden;
+    border-radius: 0.25rem;
+}
+
+#menu-window-toogle:checked~.menu-window-center {
+    -webkit-transform: scale(0) !important;
+        -ms-transform: scale(0) !important;
+            transform: scale(0) !important;
+}
+
+.login-form>div,
+.login-form>input {
+    padding: 5px;
+    margin: 5px;
+}
+
+.login-form>input:nth-of-type(1),
+.login-form>input:nth-of-type(2) {
+    background-color: var(--main-gray1);
+}
+
+.login-form>input:last-of-type {
+    -ms-grid-column: 1;
+        grid-column-start: 1;
+    -ms-grid-column-span: 2;
+    grid-column-end: 3;
+    /* background-color: var(--main-button-green); */
+}
+
+/* ?login */
+
+/* DragNDrop */
+
+.dndmoving,
+.dndmoving * {
+    background-color: var(--card-bg-overlay);
+    background-image: none;
+}
+
+/* ?DragNDrop */
+
+@media (min-width: 455px) {
+    /* MY  OWN elements */
+    /* colors{display:flex; flex-direction: row; ; margin:0; padding:0; border:0; justify-content: space-between;}
+  red{display: flex ;background-color: rgb(232, 32, 32);align-items: center; margin: auto 2px;border: 1px solid black; content: "■"; width: 15px; height: 15px; cursor: pointer;}
+  green{display: flex ;background-color: rgb(55, 179, 51);align-items: center; margin: auto 2px;border: 1px solid black; content: "■"; width: 15px; height: 15px; cursor: pointer;}
+  gray{display: flex ;background-color: rgb(88, 88, 88);align-items: center; margin: auto 2px;border: 1px solid black; content: "■"; width: 15px; height: 15px; cursor: pointer;}
+  blue{display: flex ;background-color: rgb(14, 67, 167);align-items: center; margin: auto 2px;border: 1px solid black; content: "■"; width: 15px; height: 15px; cursor: pointer;}
+  white{display: flex ;background-color: rgb(228, 228, 231);align-items: center; margin: auto 2px;border: 1px solid black; content: "■"; width: 15px; height: 15px; cursor: pointer;} */
+    .Card {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 0;
+        width: 20rem;
+    }
+    .main {
+        background-image: -o-linear-gradient( 350deg, var(--main-bg-main), var(--main-bg-second));
+        background-image: linear-gradient( 100deg, var(--main-bg-main), var(--main-bg-second));
+    }
+    .main .wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    .mob-hide {
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+    }
+    .mob-ov-hid {
+        overflow: visible;
+    }
+    .pc-hide {
+        display: none !important;
+    }
+    .AMwrapper .AMinfo {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 120%;
+        right: 5%;
+        background-color: #fff;
+        padding: 0.5rem;
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: max-content;
+        -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+        border-radius: 0.25rem;
+    }
+    .AMwrapper .AMinfo:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent #ffffff transparent transparent;
+        top: 11px;
+        left: -20px;
+        font-size: 1em;
+    }
+    .main .wrapper {
+        -webkit-box-align: start;
+            -ms-flex-align: start;
+                align-items: flex-start;
+        width: 100vw;
+        margin-top: var(--headerHeight);
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+        overflow-x: auto;
+    }
+    #burgerMenuButton {
+        position: absolute;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        right: 1.5em;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.25rem;
+        top: auto;
+    }
+    #overlay {
+        /* transform: scale(1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 3;
+    width: 100%;
+    height: 100%; */
+        display: block;
+        position: fixed;
+        /* Sit on top of the page content */
+        /* display: none; Hidden by default */
+        width: 100%;
+        /* Full width (cover the whole page) */
+        height: 100%;
+        /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Black background with opacity */
+        z-index: 2;
+        /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer;
+    }
+    .header {
+        z-index: 3;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background-color: unset;
+        background-image: -webkit-gradient( linear, left top, left bottom, from(#ceb18f), color-stop(90%, rgba(34, 30, 22, 0.26)));
+        background-image: -o-linear-gradient( top, #ceb18f, rgba(34, 30, 22, 0.26) 90%);
+        background-image: linear-gradient( 180deg, #ceb18f, rgba(34, 30, 22, 0.26) 90%);
+        --headerHeight: 40px;
+        max-height: var(--headerHeight);
+        position: fixed;
+        inset: 0 auto 0 0;
+        min-width: 100%;
+        height: var(--headerHeight);
+        border-top: rgb(145, 145, 145) solid 0px;
+        border-radius: 0 0 0 0;
+    }
+    /* hamburger menu  */
+    /* hamburger menu  */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /**
+     * in-content-page-{color, background} for dark theme.
+     *
+     * TODO(emilio): Make this just `color-scheme: dark` once color-scheme ships,
+     * (or `color-scheme: light dark` outside the media query).
+     */
+        /* background: rgb(28,27,34);
+    color: rgb(251,251,254); */
+    }
 }
