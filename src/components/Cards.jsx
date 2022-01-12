@@ -117,7 +117,7 @@ const Cards = ({
 
   return content["content"].map((card, carded) => (
     <section
-      className="Card "
+      className="Card ms-depth-8 "
       key={card.id}
       draggable="true"
       contentEditable="false"

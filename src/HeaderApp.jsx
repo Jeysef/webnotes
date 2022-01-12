@@ -39,13 +39,13 @@ const HeaderApp = () => {
           <img className="imageIcon" src={process.env.PUBLIC_URL + '/img/favicon.ico'} alt="Icon" />
         </div>
       </div>
-      <div className="wrapper mob-hide">
+      <div className="wrapper ms-hiddenLgUp">
         <ul>
-          <li className="bookmark">
+          <li className="header_navigation_button">
             <p >{menu[0]}</p>
           </li>
           <li
-            className="bookmark flex-between"
+            className="header_navigation_button flex-between"
             onClick="toogleBackgroundColourMenu()"
           >
             <p>{menu[1]}</p>
@@ -78,7 +78,7 @@ const HeaderApp = () => {
               </div>
             </div>
           </li>
-          <li className="bookmark">
+          <li className="header_navigation_button">
             <div
               style={{
                 width: "100%",
@@ -91,14 +91,8 @@ const HeaderApp = () => {
             <p>{menu[2]}</p>
             <LoginForm username={username} setUsername={setUsername} password={password} setPassword={setPassword} />
           </li>
-          <li className="bookmark">
+          <li className="header_navigation_button">
             <a href="#secondPage">{menu[3]}</a>
-          </li>
-          <li>
-            <button className="a2hs button">
-              A2HS
-
-            </button>
           </li>
         </ul>
       </div>
