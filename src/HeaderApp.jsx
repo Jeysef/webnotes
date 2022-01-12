@@ -7,7 +7,7 @@ import BurgerMenu from "./components/BurgerMenu";
 const HeaderApp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const menu = ["Save", "Add to home screen", "Log in", "About Me"]
+  const menu = ["Save", "Colours", "Log in", "About Me"]
   /*
 
   * FUNCTIONS
@@ -68,7 +68,7 @@ const HeaderApp = () => {
             <p >{menu[0]}</p>
           </li>
           <li
-            className="bookmark flex-between a2hs"
+            className="bookmark flex-between"
             onClick="toogleBackgroundColourMenu()"
           >
             <p>{menu[1]}</p>
@@ -116,6 +116,12 @@ const HeaderApp = () => {
           </li>
           <li className="bookmark">
             <a href="#secondPage">{menu[3]}</a>
+          </li>
+          <li>
+            <button className="a2hs button">
+              A2HS
+
+            </button>
           </li>
         </ul>
       </div>
