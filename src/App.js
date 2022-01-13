@@ -176,8 +176,8 @@ const MainApp = () => {
       <Navigation />
       <main id="main" class="main">
         <div id="content" className="wrapper">
-          <div id="overlay" onClick={(e) => {e.target.style.display = "none"; console.log(e.target)}}>
-          </div>
+          <div id="overlay" onClick={(e) => {e.target.style.display = "none"}}>
+          </div> 
           <NewCardForm NewCardHandler={AddNewCardHandler} />
           <Cards
             ref={card}
