@@ -3,14 +3,14 @@ import React from "react";
 const Menulist = ({menu}) => {
   const toogle = (event) => {
     if (event.target.tagName !== "INPUT")
-      document.getElementById("menu__toggle").checked =
-        !document.getElementById("menu__toggle").checked;
+      document.getElementById("menu-toggle").checked =
+        !document.getElementById("menu-toggle").checked;
   };
   return (
-    <ul className="menu__box ">
+    <ul className="menu-box ">
       <li>
         <div
-          className="menu__item"
+          className="menu-item"
           onClick={(event) => {
             toogle(event);
           }}
@@ -24,7 +24,7 @@ const Menulist = ({menu}) => {
       </li>
       <li>
         <a
-          className="menu__item"
+          className="menu-item"
           href="#main"
           onClick={(event) => {
             toogle(event);
@@ -35,7 +35,7 @@ const Menulist = ({menu}) => {
       </li>
       <li>
         <a
-          className="menu__item"
+          className="menu-item"
           href="#main"
           onClick={(event) => {
             toogle(event);
@@ -46,7 +46,7 @@ const Menulist = ({menu}) => {
       </li>
       <li>
         <a
-          className="menu__item"
+          className="menu-item"
           href="#main"
           onClick={(event) => {
             toogle(event);
@@ -57,7 +57,7 @@ const Menulist = ({menu}) => {
       </li>
       <li>
         <a
-          className="menu__item"
+          className="menu-item"
           href="#main"
           onClick={(event) => {
             toogle(event);
@@ -68,7 +68,7 @@ const Menulist = ({menu}) => {
       </li>
       <li>
         <a
-          className="menu__item"
+          className="menu-item"
           href="#secondPage"
           onClick={(event) => {
             toogle(event);

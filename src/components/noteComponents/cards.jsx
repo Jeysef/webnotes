@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
+import { FaTimes } from "react-icons/fa";
+// import my components
 import Notes from "./notes";
 import PropTypes from "prop-types";
-import { FaTimes } from "react-icons/fa";
-import "./stylesForComponents/dragNDrop.css";
+// import stylesheet
+import "../stylesForComponents/dragNDrop.css";
 
 const Cards = ({
   content,
@@ -12,13 +14,14 @@ const Cards = ({
   noteMarkerer,
   setContent,
 }) => {
-  // Cards.PropTypes = {
-  //   content: PropTypes.array,
-  //   newNoteHandler: PropTypes.func,
-  //   deleteNote: PropTypes.func,
-  //   deleteCard: PropTypes.func,
-  //   noteMarkerer: PropTypes.func,
-  // };
+  Cards.PropTypes = {
+    content: PropTypes.array,
+    newNoteHandler: PropTypes.func,
+    deleteNote: PropTypes.func,
+    deleteCard: PropTypes.func,
+    noteMarkerer: PropTypes.func,
+    setContent: PropTypes.func
+  };
 
   const [noteTitle, setnoteTitle] = useState({ value: "", id: 0 });
   // drag'n drop
@@ -131,7 +134,7 @@ const Cards = ({
       }
       // className={dragging ? getStyles(carded, card.id) : "Card"}
     >
-      <div className="blacker"></div>
+      <div className="blacker_when_mooving_card"></div>
       <header className="flex-between">
         <h3 className="CardTitle" contentEditable="true" spellCheck="false">
           {card.title}

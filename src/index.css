@@ -42,14 +42,28 @@ Use a more readable tab size (opinionated).
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
-  --headerHeight: 40px;
+  --headerHeight: 60px;
   /* My collor pallete */
+  --navigation-top-border: #919191;
+  --navigation-button-bg: #ffffffcc;
+  --main-navigation-bg: var(--main-gray4);
+
   --main-button-green: #10b981;
   --main-button-green-hover: #34d399;
   --main-button-green-active: #4cd3a6;
+
   --main-button: var(--main-gray1);
-  --card-bg-overlay: #282c34;
+  --main-button-lighter: var(--main-white);
+  --main-button-border: #a1a1aa;
+
+  --main-card-bg-overlay: var(--main-gray3);
+  --main-card-bg: var(--main-gray2);
+  --card-note-border: #a1a1aa;
+
+  --main-note-bg-overlay: var(--main-gray1);
+
   --main-bg-white: #e4e4e4;
+  --main-bg-color: var(--main-gray3);
   --main-bg-main: var(--main-orange);
   --main-bg-second: var(--main-gray2);
   --main-orange: #c48237;
@@ -725,8 +739,7 @@ body {
 }
 
 .bg_white {
-  --bg-opacity: 1;
-  background-color: rgba(255, 255, 255, var(--bg-opacity)) !important;
+  background-color: rgba(255, 255, 255, 1) !important;
   background-blend-mode: lighten;
   background-image: -webkit-gradient(
     linear,
@@ -798,19 +811,17 @@ body {
 
 /* end of multiname */
 
-.header {
+.topBottomNavigation {
   z-index: 3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: var(--main-gray2);
-  --headerHeight: 40px;
-  max-height: var(--headerHeight);
+  background-color: var(--main-navigation-bg);
   position: fixed;
   inset: auto 0 0 0;
   min-width: 100%;
   height: var(--headerHeight);
-  border-top: rgb(145, 145, 145) solid 1px;
+  border-top: var(--navigation-top-border) solid 1px;
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
@@ -819,9 +830,7 @@ body {
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
-  vertical-align: middle;
   background-color: var(--main-gray3);
-  height: 100%;
   height: 38px;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -855,10 +864,10 @@ body {
   height: 100%;
 }
 
-.header .wrapper {
-  margin-left: 2rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
+.topBottomNavigation-menu-wrapper {
+  /* margin-left: 2rem; */
+  /* margin-top: 0.25rem; */
+  /* margin-bottom: 0.25rem; */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -879,19 +888,18 @@ body {
   /* padding-top: 0.2rem;
   padding-bottom: 0.2rem; */
   /* colors */
-  --bg-opacity: 0.5;
-  background-color: rgba(228, 228, 231, var(--bg-opacity));
-  --text-opacity: 1;
-  color: rgba(39, 39, 42, var(--text-opacity));
+  /* background-color: rgba(228, 228, 231, 0.5); */
+  background-color: transparent;
+  color: rgb(39, 39, 42);
   /* special stuff */
-  border-radius: 0.5rem;
-  -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  /* border-radius: 0.5rem; */
+  /* -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    0 10px 10px -5px rgba(0, 0, 0, 0.04); */
 }
 
-.header .wrapper ul {
+.topBottomNavigation-menu-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -935,24 +943,24 @@ body {
   top: auto;
 }
 
-.header_navigation_button {
+.topBottomNavigation-menu-button {
   position: relative;
-  display: inline;
-  --bg-opacity: 1;
+  /* display: inline; */
+  /* --bg-opacity: 1; */
   /* background-color: rgba(9, 142, 182, 0.589);
   background-image: linear-gradient(210deg, rgba(9, 142, 182, var(--bg-opacity)), rgba(28, 236, 73, var(--bg-opacity))); */
-  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  background-color: var(--navigation-button-bg);
   /* --border-opacity: 1;
    border-color: rgba(161, 161, 170, var(--border-opacity));  */
   border-radius: 0.5rem;
-  border-color: #818181;
-  border-bottom-width: 2px;
-  outline: white;
-  outline-offset: -2px;
-  outline-width: 2px;
+  /* border-color: #818181; */
+  /* border-bottom-width: 2px; */
+  /* outline: white; */
+  /* outline-offset: -2px; */
+  /* outline-width: 2px; */
   /* outline-style: groove; */
   /* cursor: pointer; */
-  line-height: 1.375;
+  /* line-height: 1.375; */
   cursor: pointer;
   margin: auto;
   padding-left: 0.75rem;
@@ -971,7 +979,7 @@ body {
   border: 1px solid rgba(161, 161, 170, 1) !important;
   cursor: auto;
   color: #000;
-  background-color: #fff;
+  background-color: var(--main-card-bg);
   display: none;
   position: absolute;
   /* min-width: 160px; */
@@ -1021,7 +1029,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-image: -o-linear-gradient(
+  /* background-image: -o-linear-gradient(
     205deg,
     var(--main-bg-main),
     var(--main-bg-second)
@@ -1030,7 +1038,8 @@ body {
     245deg,
     var(--main-bg-main),
     var(--main-bg-second)
-  );
+  ); */
+  background-color: var(--main-bg-color);
   min-height: 100vh;
   margin: 0;
 }
@@ -1096,9 +1105,7 @@ body {
   padding: 0.75rem;
   padding-bottom: 0.5rem;
   width: 100%;
-  --bg-opacity: 1;
-  background-color: var(--notes-bg);
-  --text-opacity: 1;
+  background-color: var(--main-card-bg);
   color: var(--main-gray4);
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -1126,14 +1133,14 @@ body {
   font-style: italic;
 }
 
-.blacker {
+.blacker_when_mooving_card {
   -webkit-transform: scale(0);
   -ms-transform: scale(0);
   transform: scale(0);
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: var(--card-bg-overlay);
+  background-color: var(--main-card-bg-overlay);
   z-index: 2;
   left: 0;
   top: 0;
@@ -1148,10 +1155,9 @@ body {
   margin-right: 0.5rem;
   text-align: center;
   border-radius: 0.25rem;
-  border-color: rgba(161, 161, 170, var(--border-opacity));
+  border-color: var(--main-button-border);
   border-bottom-width: 1px;
-  --bg-opacity: 1;
-  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  background-color: var(--main-button);
 }
 
 .deleteCard,
@@ -1187,11 +1193,10 @@ body {
 
 .Note {
   position: relative;
-  --border-opacity: 1;
-  border-color: rgba(161, 161, 170, var(--border-opacity));
+  border-color: var(--card-note-border);
   border-radius: 0.25rem;
   border-bottom-width: 1px;
-  cursor: auto;
+  cursor: default;
   line-height: 1.375;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -1323,7 +1328,7 @@ body {
   border: 1px solid var(--main-gray2) !important;
   cursor: auto;
   color: var(--main-black);
-  background-color: var(--main-white);
+  background-color: var(--notes-bg);
   display: none;
   position: absolute;
   /* min-width: 160px; */
@@ -1371,7 +1376,7 @@ body {
 }
 
 .button:hover {
-  background-color: var(--main-gray2);
+  background-color: var(--main-button-lighter);
 }
 
 .NoteBlockMenuWrapper > a {
@@ -1412,7 +1417,7 @@ footer a:hover {
   border-top-width: 1px;
   border-left-width: 1px;
   --border-opacity: 1;
-  border-color: var(--main-gray1);
+  border-color: var(--card-note-border);
   outline: 2px solid transparent;
   outline-offset: 2px;
   border-radius: 0.25rem;
@@ -1431,13 +1436,13 @@ footer a:hover {
   margin-bottom: 2.5rem;
 }
 
-.addNew {
+.addNewCardInput {
   min-width: 15rem;
   width: 100%;
   padding: 0.5rem;
   padding-right: 0rem;
-  --bg-opacity: 0.4;
-  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  /* --bg-opacity: 0.4; */
+  /* background-color: rgba(255, 255, 255, var(--bg-opacity)); */
   --placeholder-opacity: 1;
   color: rgba(255, 255, 255, var(--placeholder-opacity));
   font-weight: 700;
@@ -1684,8 +1689,6 @@ footer a:hover {
   overflow: hidden;
 }
 
-
-
 .pc-hidden {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -1773,7 +1776,7 @@ footer a:hover {
 
 .dndmoving,
 .dndmoving * {
-  background-color: var(--card-bg-overlay);
+  background-color: var(--main-card-bg-overlay);
   background-image: none;
 }
 
@@ -1787,6 +1790,9 @@ footer a:hover {
   gray{display: flex ;background-color: rgb(88, 88, 88);align-items: center; margin: auto 2px;border: 1px solid black; content: "■"; width: 15px; height: 15px; cursor: pointer;}
   blue{display: flex ;background-color: rgb(14, 67, 167);align-items: center; margin: auto 2px;border: 1px solid black; content: "■"; width: 15px; height: 15px; cursor: pointer;}
   white{display: flex ;background-color: rgb(228, 228, 231);align-items: center; margin: auto 2px;border: 1px solid black; content: "■"; width: 15px; height: 15px; cursor: pointer;} */
+  :root {
+    --headerHeight: 40px;
+  }
   .Card {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -1794,7 +1800,7 @@ footer a:hover {
     width: 20rem;
   }
   .main {
-    background-image: -o-linear-gradient(
+    /* background-image: -o-linear-gradient(
       350deg,
       var(--main-bg-main),
       var(--main-bg-second)
@@ -1803,7 +1809,9 @@ footer a:hover {
       100deg,
       var(--main-bg-main),
       var(--main-bg-second)
-    );
+    ); */
+    display: flex;
+    background-color: var(--main-bg-color);
   }
   .main .wrapper {
     display: -webkit-box;
@@ -1902,29 +1910,12 @@ footer a:hover {
     /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer;
   }
-  .header {
+  .topBottomNavigation {
     z-index: 3;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background-color: unset;
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      from(#ceb18f),
-      color-stop(90%, rgba(34, 30, 22, 0.26))
-    );
-    background-image: -o-linear-gradient(
-      top,
-      #ceb18f,
-      rgba(34, 30, 22, 0.26) 90%
-    );
-    background-image: linear-gradient(
-      180deg,
-      #ceb18f,
-      rgba(34, 30, 22, 0.26) 90%
-    );
+    background-color: var(--main-navigation-bg);
     --headerHeight: 40px;
     max-height: var(--headerHeight);
     position: fixed;
@@ -1934,8 +1925,6 @@ footer a:hover {
     border-top: rgb(145, 145, 145) solid 0px;
     border-radius: 0 0 0 0;
   }
-  /* hamburger menu  */
-  /* hamburger menu  */
 }
 
 @media (prefers-color-scheme: dark) {

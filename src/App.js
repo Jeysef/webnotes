@@ -1,15 +1,11 @@
-// import logo from './logo.svg';
 import React, { useState, useEffect, useRef } from "react";
-// import ReactDOM from "react-dom";
+// import my components
+import Navigation from "./components/navigation";
+import Cards from "./components/noteComponents/cards";
+import AboutMeApp from "./components/aboutMeApp";
+import NewCardForm from "./components/noteComponents/newCardForm";
+// import styles
 import "./index.css";
-import Cards from "./components/Cards";
-
-import HeaderApp from "./HeaderApp";
-import AboutMeApp from "./AboutMeApp";
-// import Notes from "./components/notes";
-// custom components
-import NewCardForm from "./components/newCardForm";
-// import ReactFullpage from "@fullpage/react-fullpage";
 
 const MainApp = () => {
   // State Holder
@@ -110,7 +106,8 @@ const MainApp = () => {
     // this will update content
     const becontent = copyOf(content);
     // console.log(becontent["content"], "fdf");
-    becontent["content"].unshift({  // unshift || push [to start, to end ]
+    becontent["content"].unshift({
+      // unshift || push [to start, to end ]
       id: id,
       notes: [],
       title: titleName,
@@ -175,23 +172,13 @@ const MainApp = () => {
   const card = useRef();
 
   return (
-    <>
-      <header id="header" class="header">
-        <HeaderApp />
-      </header>
+    <div className="pageContainer">
+      <Navigation />
       <main id="main" class="main">
         <div id="content" className="wrapper">
-          <div
-            id="overlay"
-            className=""
-            // onDragEnter={
-            //   card.current &&
-            //   card.current.dragging && !content.length
-            //     ? (e) => card.current.handleDragEnter(e, { itemI: 0 })
-            //     : null
-            // }
-          ></div>
-            <NewCardForm NewCardHandler={AddNewCardHandler} />
+          <div id="overlay" onClick={(e) => {e.target.style.display = "none"; console.log(e.target)}}>
+          </div>
+          <NewCardForm NewCardHandler={AddNewCardHandler} />
           <Cards
             ref={card}
             content={content}
@@ -206,11 +193,8 @@ const MainApp = () => {
       <div id="secondPage" class="main">
         <AboutMeApp />
       </div>
-    </>
+    </div>
   );
-  //   }}
-  // />
-  // );
 };
 
 export default MainApp;

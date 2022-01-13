@@ -1,27 +1,27 @@
-#menu__toggle {
+#menu-toggle {
   cursor: pointer;
   width: 100%;
   height: 100%;
   opacity: 0;
   z-index: 1;
 }
-#menu__toggle:checked + .menu__btn > span {
+#menu-toggle:checked + .menu-btn > span {
   transform: rotate(45deg);
 }
-#menu__toggle:checked + .menu__btn > span::before {
+#menu-toggle:checked + .menu-btn > span::before {
   top: 0;
   transform: rotate(0deg);
 }
-#menu__toggle:checked + .menu__btn > span::after {
+#menu-toggle:checked + .menu-btn > span::after {
   top: 0;
   transform: rotate(90deg);
 }
-#menu__toggle:checked ~ .menu__box {
+#menu-toggle:checked ~ .menu-box {
   left: 0 !important;
   /* transition: left 0.25ms ease 0ms, transform 0ms linear 0.25ms; */
   transform: translateX(0);
 }
-.menu__btn {
+.menu-btn {
   position: absolute;
   /* top: 0.2rem;
   left: 0.2rem; */
@@ -34,9 +34,9 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-.menu__btn > span,
-.menu__btn > span::before,
-.menu__btn > span::after {
+.menu-btn > span,
+.menu-btn > span::before,
+.menu-btn > span::after {
   display: block;
   position: absolute;
   width: 100%;
@@ -45,15 +45,15 @@
   transition-duration: 0.25s;
   top: -1px;
 }
-.menu__btn > span::before {
+.menu-btn > span::before {
   content: "";
   top: -1ex;
 }
-.menu__btn > span::after {
+.menu-btn > span::after {
   content: "";
   top: 1ex;
 }
-.menu__box {
+.menu-box {
   display: block;
   position: fixed;
   top: 0;
@@ -68,10 +68,10 @@
   /* transition: left 0.25s ease 0ms, transform 0ms linear 0ms; */
   transform: translateX(-100%);
 }
-.menu__box li {
+.menu-box li {
   position: relative;
 }
-.menu__item {
+.menu-item {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -84,10 +84,10 @@
   text-decoration: none;
   transition-duration: 0.25s;
 }
-.menu__box li:nth-child(1) {
+.menu-box li:nth-child(1) {
   margin-bottom: 10%;
 }
-.menu__item:hover {
+.menu-item:hover {
   background-color: #cfd8dc;
 }
 .transition_opening {

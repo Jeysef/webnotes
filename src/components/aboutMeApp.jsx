@@ -1,5 +1,3 @@
-import React from "react";
-import "./index.css";
 import { ScrollRotate } from "react-scroll-rotate";
 
 const AboutMeApp = () => {

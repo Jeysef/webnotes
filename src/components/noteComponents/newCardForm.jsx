@@ -21,7 +21,7 @@ function NewCardForm({ NewCardHandler }) {
     <form className="addNewCard">
       <input
         spellCheck="false"
-        className="addNew"
+        className="addNewCardInput"
         type="text"
         placeholder="Add another Card"
         value={NewCardText}
