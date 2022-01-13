@@ -191,6 +191,9 @@ const MainApp = () => {
             //     : null
             // }
           ></div>
+          <div>
+            <h1>Notes</h1>
+          </div>
             <NewCardForm NewCardHandler={AddNewCardHandler} />
           <Cards
             ref={card}
