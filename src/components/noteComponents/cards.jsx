@@ -20,7 +20,7 @@ const Cards = ({
     deleteNote: PropTypes.func,
     deleteCard: PropTypes.func,
     noteMarkerer: PropTypes.func,
-    setContent: PropTypes.func
+    setContent: PropTypes.func,
   };
 
   const [noteTitle, setnoteTitle] = useState({ value: "", id: 0 });
@@ -49,7 +49,7 @@ const Cards = ({
 
     setTimeout(() => {
       setDragging(true);
-      document.getElementsByClassName("blacker")[
+      document.getElementsByClassName("blacker_when_mooving_card")[
         dragItem.current
       ].style.transform = "scale(1)";
     }, 0);
@@ -76,7 +76,13 @@ const Cards = ({
   };
   const handleDragEnd = (e) => {
     setDragging(false);
-    document.getElementsByClassName("blacker")[
+    console.log(
+      dragItem.current,
+      document.getElementsByClassName("blacker_when_mooving_card")[
+        dragItem.current
+      ]
+    );
+    document.getElementsByClassName("blacker_when_mooving_card")[
       dragItem.current
     ].style.transform = "scale(0)";
     dragItem.current = null;
@@ -89,11 +95,11 @@ const Cards = ({
       //   dragItem.current.grpI === item.grpI &&
       dragItem.current === itemIdDND
     ) {
-      document.getElementsByClassName("blacker")[
+      document.getElementsByClassName("blacker_when_mooving_card")[
         dragItem.current
       ].style.transform = "scale(1)";
     } else {
-      document.getElementsByClassName("blacker")[
+      document.getElementsByClassName("blacker_when_mooving_card")[
         dragItem.current
       ].style.transform = "scale(0)";
     }
@@ -117,65 +123,67 @@ const Cards = ({
     await delay(250);
     deleteCard(cardId);
   };
-
-  return content["content"].map((card, carded) => (
-    <section
-      className="Card ms-depth-8 "
-      key={card.id}
-      draggable="true"
-      contentEditable="false"
-      onDragStart={(e) => handletDragStart(e, carded)}
-      onDragEnter={
-        dragging
-          ? (e) => {
-              handleDragEnter(e, carded);
-            }
-          : null
-      }
-      // className={dragging ? getStyles(carded, card.id) : "Card"}
-    >
-      <div className="blacker_when_mooving_card"></div>
-      <header className="flex-between">
-        <h3 className="CardTitle" contentEditable="true" spellCheck="false">
-          {card.title}
-        </h3>
-        <div className="LinksWrapper">
-          <button
-            className="deleteCard"
-            onClick={() => {
-              handleDeleteCard(card.id, carded);
-            }}
-          >
-            <FaTimes />
-          </button>
-        </div>
-      </header>
-      <ul>
-        <Notes
-          contentNotes={card["notes"]}
-          deleteNote={deleteNote}
-          cardId={carded}
-          noteMarkerer={noteMarkerer}
-        />
-      </ul>
-      <footer draggable="false">
-        <form onSubmit={(e) => handleAddNewNote(e, carded)}>
-          <textarea
-            value={noteTitle.id === card.id ? noteTitle.value : ""}
-            onChange={(e) => {
-              // console.log("tar", e.target);
-              setnoteTitle({ value: e.target.value, id: card.id });
-            }}
-            spellCheck="false"
-            className="textarea addCardTextarea"
-            rows="2"
-          ></textarea>
-          <input type="submit" value="Add card" className="addNoteBtn" />
-        </form>
-      </footer>
-    </section>
-  ));
-  // </div>
+  if (content["content"]) {
+    return content["content"].map((card, carded) => (
+      <section
+        className="Card ms-depth-8 "
+        key={card.id}
+        draggable="true"
+        contentEditable="false"
+        onDragStart={(e) => handletDragStart(e, carded)}
+        onDragEnter={
+          dragging
+            ? (e) => {
+                handleDragEnter(e, carded);
+              }
+            : null
+        }
+        // className={dragging ? getStyles(carded, card.id) : "Card"}
+      >
+        <div className="blacker_when_mooving_card"></div>
+        <header className="flex-between">
+          <h3 className="CardTitle" contentEditable="true" spellCheck="false">
+            {card.title}
+          </h3>
+          <div className="LinksWrapper">
+            <button
+              className="deleteCard"
+              onClick={() => {
+                handleDeleteCard(card.id, carded);
+              }}
+            >
+              <FaTimes />
+            </button>
+          </div>
+        </header>
+        <ul>
+          <Notes
+            contentNotes={card["notes"]}
+            deleteNote={deleteNote}
+            cardId={carded}
+            noteMarkerer={noteMarkerer}
+          />
+        </ul>
+        <footer draggable="false">
+          <form onSubmit={(e) => handleAddNewNote(e, carded)}>
+            <textarea
+              value={noteTitle.id === card.id ? noteTitle.value : ""}
+              onChange={(e) => {
+                // console.log("tar", e.target);
+                setnoteTitle({ value: e.target.value, id: card.id });
+              }}
+              spellCheck="false"
+              className="textarea addCardTextarea"
+              rows="2"
+            ></textarea>
+            <input type="submit" value="Add card" className="addNoteBtn" />
+          </form>
+        </footer>
+      </section>
+    ));
+    // </div>
+  } else {
+    return null;
+  }
 };
-
 export default Cards;

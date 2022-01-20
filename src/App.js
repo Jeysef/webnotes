@@ -11,32 +11,52 @@ const MainApp = () => {
   // State Holder
 
   const [content, setContent] = useState({
-    content: [
-      {
-        id: 0,
-        notes: [
-          { content: "and this is note", id: 0, mark: false },
-          { content: "and this is note2", id: 1, mark: false },
-        ],
-        title: "card1",
-      },
-      {
-        id: 1,
-        notes: [
-          { content: "and this is note", id: 0, mark: false },
-          { content: "and this is note2", id: 1, mark: false },
-        ],
-        title: "card2",
-      },
-      {
-        id: 2,
-        notes: [
-          { content: "and this is note", id: 0, mark: false },
-          { content: "and this is note2", id: 1, mark: false },
-        ],
-        title: "card3",
-      },
-    ],
+    // "content": [{
+    //     "id": 0,
+    //     "title": "card1",
+    //     "notes": [{
+    //         "content": "and this is note",
+    //         "id": 0,
+    //         "mark": false
+    //       },
+    //       {
+    //         "content": "and this is note2",
+    //         "id": 1,
+    //         "mark": false
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     "id": 1,
+    //     "notes": [{
+    //         "content": "and this is note",
+    //         "id": 0,
+    //         "mark": false
+    //       },
+    //       {
+    //         "content": "and this is note2",
+    //         "id": 1,
+    //         "mark": false
+    //       }
+    //     ],
+    //     "title": "card2"
+    //   },
+    //   {
+    //     "id": 2,
+    //     "notes": [{
+    //         "content": "and this is note",
+    //         "id": 0,
+    //         "mark": false
+    //       },
+    //       {
+    //         "content": "and this is note2",
+    //         "id": 1,
+    //         "mark": false
+    //       }
+    //     ],
+    //     "title": "card3"
+    //   }
+    // ]
   });
   // {"content": [{"id": 0, "notes": [{"content": "and this is note", "id": 0, "mark": false}], "title": "HI this is card"}]}
 
@@ -64,25 +84,51 @@ const MainApp = () => {
   //   ]
 
   // get data from server and set content
-  // useEffect(() => {
-  //   const getTasks = async () => {
-  //     const contentFomServer = await fetchContent();
-  //     setContent(contentFomServer);
-  //     console.log(content);
-  //   };
-  //   getTasks();
-  // }, []);
+  useEffect(() => {
+    const getTasks = async () => {
+      console.log("FETCHING FROM SERVER");
+      const contentFomServer = await fetchContent();
+      // setContent(contentFomServer);
+      // console.log(content, 'new content');
+    };
+    getTasks();
+  }, []);
 
-  // const fetchContent = async () => {
-  //   const response = await fetch(
-  //     "https://json.extendsclass.com/bin/138ae146c385"
-  //   );
-  //   const data = await response.json();
-  //   console.log(data);
-  //   const bedata = data["content"];
-  //   console.log(data);
-  //   return bedata;
-  // };
+  const fetchContent = async () => {
+      var getJSON = function(url, callback) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', url, true);
+          xhr.responseType = 'json';
+          xhr.onload = function() {
+            var status = xhr.status;
+            if (status === 200) {
+              callback(null, xhr.response);
+            } else {
+              callback(status, xhr.response);
+            }
+          };
+          xhr.send();
+      };
+      
+          getJSON('https://api.jsonstorage.net/v1/json/90192964-b43a-4291-8184-278f70f45ce8/ff047acd-2dc5-43f9-8dc4-3687717f0bdb?apiKey=%5489b554-1a5e-4978-a915-b5fe3b8433af%',
+      function(err, data) {
+        if (err !== null) {
+          alert('Something went wrong: ' + err);
+        } else {
+        console.log(data);
+        setContent(data)
+        }
+      });   
+
+    // const response = await fetch(
+    //   "https://json.extendsclass.com/bin/138ae146c385"
+    // );
+    // const data = await response.json();
+    // console.log(data);
+    // const bedata = data["content"];
+    // console.log(data);
+    // return bedata;
+  };
 
   /*
 
