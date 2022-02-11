@@ -1,0 +1,144 @@
+{
+    "load": {
+        "content": [
+            {
+                "id": 0,
+                "title": "loading...",
+                "notes": [
+                    {
+                        "content": "loading...",
+                        "id": 0,
+                        "mark": false
+                    }
+                ]
+            }
+        ]
+    },
+    "user": {
+        "content": [
+            {
+                "id": 0,
+                "title": "user's card",
+                "notes": [
+                    {
+                        "content": "and this is note",
+                        "id": 0,
+                        "mark": false
+                    },
+                    {
+                        "content": "and this is note2",
+                        "id": 1,
+                        "mark": false
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "notes": [
+                    {
+                        "content": "and this is note",
+                        "id": 0,
+                        "mark": false
+                    },
+                    {
+                        "content": "and this is note2",
+                        "id": 1,
+                        "mark": false
+                    }
+                ],
+                "title": "card2"
+            },
+            {
+                "id": 2,
+                "notes": [
+                    {
+                        "content": "and this is note",
+                        "id": 0,
+                        "mark": false
+                    },
+                    {
+                        "content": "and this is note2",
+                        "id": 1,
+                        "mark": false
+                    }
+                ],
+                "title": "card3"
+            }
+        ]
+    }
+}
+
+
+"content": [{
+    "id": 0,
+    "title": "card1",
+    "notes": [{
+        "content": "and this is note",
+        "id": 0,
+        "mark": false
+      },
+      {
+        "content": "and this is note2",
+        "id": 1,
+        "mark": false
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "notes": [{
+        "content": "and this is note",
+        "id": 0,
+        "mark": false
+      },
+      {
+        "content": "and this is note2",
+        "id": 1,
+        "mark": false
+      }
+    ],
+    "title": "card2"
+  },
+  {
+    "id": 2,
+    "notes": [{
+        "content": "and this is note",
+        "id": 0,
+        "mark": false
+      },
+      {
+        "content": "and this is note2",
+        "id": 1,
+        "mark": false
+      }
+    ],
+    "title": "card3"
+  }
+]
+
+
+
+{"content": [{"id": 0, "notes": [{"content": "and this is note", "id": 0, "mark": false}], "title": "HI this is card"}]}
+
+    [
+    "user1":{
+      "id":0,
+      "password":{"hash": hash("password"), "salt": this.id},
+
+      "content":
+      {"title": "card1", "id": 0, "notes": [
+      {"title": "note1", "id": 0, "mark": false}
+      ]}
+      ], "colors":{"background": "linear-gradient(var(--bgorange), var(--bggray)", "colorScheme": "light"}
+      },
+      "user2":{
+      "id":1,
+      "password":{"hash": hash("password"), "salt": this.id},
+
+      "content":
+      {"title": "card1", "id": 0, "notes": [
+      {"title": "note1", "id": 0, "mark": false}
+      ]}
+      ], "colors":{"background": "linear-gradient(var(--bgorange), var(--bggray)", "colorScheme": "dark"}
+      }
+      ]

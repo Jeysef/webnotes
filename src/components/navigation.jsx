@@ -4,9 +4,7 @@ import LoginForm from "./loginForm";
 import BurgerMenu from "./burgerMenu";
 import MenuButtons from "./menuButtons";
 
-const Navigation = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Navigation = ({username, setUsername, password, setPassword}) => {
   const menu = ["Save", "Colours", "Log in", "About Me"];
   /*
 

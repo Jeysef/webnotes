@@ -8,239 +8,226 @@ import NewCardForm from "./components/noteComponents/newCardForm";
 import "./index.css";
 
 const MainApp = () => {
-  // State Holder
+    // State Holder
+    const [dUrl, setDUrl] = useState(
+        "https://api.jsonstorage.net/v1/json/90192964-b43a-4291-8184-278f70f45ce8/ff047acd-2dc5-43f9-8dc4-3687717f0bdb?apiKey=%5489b554-1a5e-4978-a915-b5fe3b8433af%"
+    );
+    const [username, setUsername] = useState("load");
+    const [password, setPassword] = useState("");
+    const [allData, setAllData] = useState({});
+    const [content, setContent] = useState({
+        content: [
+            {
+                id: 0,
+                title: "loading...",
+                notes: [
+                    {
+                        content: "loading...",
+                        id: 0,
+                        mark: false,
+                    },
+                ],
+            },
+        ],
+    });
 
-  const [content, setContent] = useState({
-    // "content": [{
-    //     "id": 0,
-    //     "title": "card1",
-    //     "notes": [{
-    //         "content": "and this is note",
-    //         "id": 0,
-    //         "mark": false
-    //       },
-    //       {
-    //         "content": "and this is note2",
-    //         "id": 1,
-    //         "mark": false
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     "id": 1,
-    //     "notes": [{
-    //         "content": "and this is note",
-    //         "id": 0,
-    //         "mark": false
-    //       },
-    //       {
-    //         "content": "and this is note2",
-    //         "id": 1,
-    //         "mark": false
-    //       }
-    //     ],
-    //     "title": "card2"
-    //   },
-    //   {
-    //     "id": 2,
-    //     "notes": [{
-    //         "content": "and this is note",
-    //         "id": 0,
-    //         "mark": false
-    //       },
-    //       {
-    //         "content": "and this is note2",
-    //         "id": 1,
-    //         "mark": false
-    //       }
-    //     ],
-    //     "title": "card3"
-    //   }
-    // ]
-  });
-  // {"content": [{"id": 0, "notes": [{"content": "and this is note", "id": 0, "mark": false}], "title": "HI this is card"}]}
+    // get data from server and set content
 
-  // [
-  // "user1":{
-  //   "id":0,
-  //   "password":{"hash": hash("password"), "salt": this.id},
+    useEffect(() => {
+        const getTasks = async () => {
+            console.log("FETCHING FROM SERVER");
 
-  //   "content":
-  //   {"title": "card1", "id": 0, "notes": [
-  //   {"title": "note1", "id": 0, "mark": false}
-  //   ]}
-  //   ], "colors":{"background": "linear-gradient(var(--bgorange), var(--bggray)", "colorScheme": "light"}
-  //   },
-  //   "user2":{
-  //   "id":1,
-  //   "password":{"hash": hash("password"), "salt": this.id},
+            fetchContent().then((contentFomServer) => {
+                console.log("contentFomServer", contentFomServer);
+            });
+            // console.log("contentFomServer", contentFomServer);
+            // setAllData(contentFomServer);
+            // console.log("alldata", allData);
+            // setContent(allData[username]);
+            // setContent(contentFomServer);
+            // console.log(content, 'new content');
+        };
+        getTasks();
+    }, [username]);
 
-  //   "content":
-  //   {"title": "card1", "id": 0, "notes": [
-  //   {"title": "note1", "id": 0, "mark": false}
-  //   ]}
-  //   ], "colors":{"background": "linear-gradient(var(--bgorange), var(--bggray)", "colorScheme": "dark"}
-  //   }
-  //   ]
-
-  // get data from server and set content
-  useEffect(() => {
-    const getTasks = async () => {
-      console.log("FETCHING FROM SERVER");
-      const contentFomServer = await fetchContent();
-      // setContent(contentFomServer);
-      // console.log(content, 'new content');
-    };
-    getTasks();
-  }, []);
-
-  const fetchContent = async () => {
-      var getJSON = function(url, callback) {
-          var xhr = new XMLHttpRequest();
-          xhr.open('GET', url, true);
-          xhr.responseType = 'json';
-          xhr.onload = function() {
-            var status = xhr.status;
-            if (status === 200) {
-              callback(null, xhr.response);
-            } else {
-              callback(status, xhr.response);
-            }
-          };
-          xhr.send();
-      };
-      
-          getJSON('https://api.jsonstorage.net/v1/json/90192964-b43a-4291-8184-278f70f45ce8/ff047acd-2dc5-43f9-8dc4-3687717f0bdb?apiKey=%5489b554-1a5e-4978-a915-b5fe3b8433af%',
-      function(err, data) {
-        if (err !== null) {
-          alert('Something went wrong: ' + err);
-        } else {
-        console.log(data);
-        setContent(data)
+    const fetchContent = async () => {
+      const getJSON = async (url, callback) => {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.responseType = "json";
+            xhr.onload = function () {
+                var status = xhr.status;
+                if (status === 200) {
+                    callback(null, xhr.response);
+                } else {
+                    callback(status, xhr.response);
+                }
+            };
+            xhr.send();
+        };
+        const retFunc = (err, data) => {
+          if (err !== null) {
+              alert("Something went wrong: " + err);
+          } else {
+              console.log("data0", data);
+              return data
+          }
         }
-      });   
+        return await getJSON(dUrl, retFunc);
+        
+    };
 
-    // const response = await fetch(
-    //   "https://json.extendsclass.com/bin/138ae146c385"
-    // );
-    // const data = await response.json();
-    // console.log(data);
-    // const bedata = data["content"];
-    // console.log(data);
-    // return bedata;
-  };
+    const postContent = async () => {
+        var postJSON = function (url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
 
-  /*
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                var status = xhr.status;
+                if (status === 4) {
+                    callback(null, xhr.response);
+                } else {
+                    callback(status, xhr.response);
+                }
+            };
+            xhr.send(content);
+        };
+        postJSON(dUrl, function (err, data) {
+            if (err !== null) {
+                alert("Something went wrong: " + err);
+            } else {
+                console.log("Send Data OK");
+
+                fetchContent();
+            }
+        });
+    };
+
+    /*
 
   * FUNCTIONS
 
   */
-  const copyOf = (Data) => {
-    return JSON.parse(JSON.stringify(Data));
-  };
+    const copyOf = (Data) => {
+        return JSON.parse(JSON.stringify(Data));
+    };
 
-  const AddNewCardHandler = (titleName) => {
-    if (content["content"].length !== 0) {
-      var arrOfIds = content["content"].map((c) => c.id);
-      var id =
-        arrOfIds.reduce(function (a, b) {
-          return Math.max(a, b);
-        }, 0) + 1;
-    } else {
-      id = 0;
-    }
-    // this will update content
-    const becontent = copyOf(content);
-    // console.log(becontent["content"], "fdf");
-    becontent["content"].unshift({
-      // unshift || push [to start, to end ]
-      id: id,
-      notes: [],
-      title: titleName,
-    });
-    setContent(becontent);
-    return;
-  };
-  const AddNewNoteHandler = (contentValue, cardId) => {
-    let becontent = content;
-    if (becontent["content"][cardId]["notes"].length !== 0) {
-      var arrOfIds = becontent["content"][cardId]["notes"].map((c) => c.id);
-      var id =
-        arrOfIds.reduce(function (a, b) {
-          return Math.max(a, b);
-        }, 0) + 1;
-    } else {
-      id = 0;
-    }
-    becontent["content"][cardId]["notes"].push({
-      content: contentValue,
-      id: id,
-      mark: false,
-    });
-    // this will update content
-    setContent(becontent);
-  };
-  const deleteNote = (cardId, NoteId) => {
-    const becontent = copyOf(content);
-    for (var i = 0; i < becontent["content"][cardId]["notes"].length; i++) {
-      if (becontent["content"][cardId]["notes"][i]["id"] === NoteId) {
-        becontent["content"][cardId]["notes"].splice(i, 1);
-        i--;
-      }
-    }
+    const AddNewCardHandler = (titleName) => {
+        if (content["content"].length !== 0) {
+            var arrOfIds = content["content"].map((c) => c.id);
+            var id =
+                arrOfIds.reduce(function (a, b) {
+                    return Math.max(a, b);
+                }, 0) + 1;
+        } else {
+            id = 0;
+        }
+        // this will update content
+        const becontent = copyOf(content);
+        // console.log(becontent["content"], "fdf");
+        becontent["content"].unshift({
+            // unshift || push [to start, to end ]
+            id: id,
+            notes: [],
+            title: titleName,
+        });
+        setContent(becontent);
+        return;
+    };
+    const AddNewNoteHandler = (contentValue, cardId) => {
+        let becontent = content;
+        if (becontent["content"][cardId]["notes"].length !== 0) {
+            var arrOfIds = becontent["content"][cardId]["notes"].map(
+                (c) => c.id
+            );
+            var id =
+                arrOfIds.reduce(function (a, b) {
+                    return Math.max(a, b);
+                }, 0) + 1;
+        } else {
+            id = 0;
+        }
+        becontent["content"][cardId]["notes"].push({
+            content: contentValue,
+            id: id,
+            mark: false,
+        });
+        // this will update content
+        setContent(becontent);
+    };
+    const deleteNote = (cardId, NoteId) => {
+        const becontent = copyOf(content);
+        for (var i = 0; i < becontent["content"][cardId]["notes"].length; i++) {
+            if (becontent["content"][cardId]["notes"][i]["id"] === NoteId) {
+                becontent["content"][cardId]["notes"].splice(i, 1);
+                i--;
+            }
+        }
 
-    setContent(becontent);
-  };
-  const deleteCard = async (cardId) => {
-    // await fetch(`https://json.extendsclass.com/bin/138ae146c385`, {
-    //   method: "DELETE",
-    // });
-    const becontent = copyOf(content);
-    for (var i = 0; i < becontent["content"].length; i++) {
-      if (becontent["content"][i]["id"] === cardId) {
-        becontent["content"].splice(i, 1);
-        i--;
-      }
-    }
-    // console.log(content, becontent);
-    setContent(becontent);
-  };
-  // mark Note
-  const markNote = (cardId, noteId) => {
-    const becontent = copyOf(content);
-    becontent["content"][cardId]["notes"][noteId]["mark"] =
-      !becontent["content"][cardId]["notes"][noteId]["mark"];
-    // console.log(content, becontent);
+        setContent(becontent);
+    };
+    const deleteCard = async (cardId) => {
+        // await fetch(`https://json.extendsclass.com/bin/138ae146c385`, {
+        //   method: "DELETE",
+        // });
+        const becontent = copyOf(content);
+        for (var i = 0; i < becontent["content"].length; i++) {
+            if (becontent["content"][i]["id"] === cardId) {
+                becontent["content"].splice(i, 1);
+                i--;
+            }
+        }
+        // console.log(content, becontent);
+        setContent(becontent);
+    };
+    // mark Note
+    const markNote = (cardId, noteId) => {
+        const becontent = copyOf(content);
+        becontent["content"][cardId]["notes"][noteId]["mark"] =
+            !becontent["content"][cardId]["notes"][noteId]["mark"];
+        // console.log(content, becontent);
 
-    setContent(becontent);
-  };
+        setContent(becontent);
+    };
 
-  const card = useRef();
+    const card = useRef();
 
-  return (
-    <div className="pageContainer">
-      <Navigation />
-      <main id="main" class="main">
-        <div id="content" className="wrapper">
-          <div id="overlay" onClick={(e) => {e.target.style.display = "none"}}>
-          </div> 
-          <NewCardForm NewCardHandler={AddNewCardHandler} />
-          <Cards
-            ref={card}
-            content={content}
-            newNoteHandler={AddNewNoteHandler}
-            deleteNote={deleteNote}
-            deleteCard={deleteCard}
-            noteMarkerer={markNote}
-            setContent={setContent}
-          />
+    return (
+        <div className="pageContainer">
+            <Navigation
+                username={username}
+                setUsername={setUsername}
+                password={password}
+                setPassword={setPassword}
+            />
+            <main id="main" class="main">
+                <div id="content" className="wrapper">
+                    <div
+                        id="overlay"
+                        onClick={(e) => {
+                            e.target.style.display = "none";
+                        }}
+                    ></div>
+                    <NewCardForm NewCardHandler={AddNewCardHandler} />
+                    <Cards
+                        ref={card}
+                        content={content}
+                        newNoteHandler={AddNewNoteHandler}
+                        deleteNote={deleteNote}
+                        deleteCard={deleteCard}
+                        noteMarkerer={markNote}
+                        setContent={setContent}
+                    />
+                </div>
+            </main>
+            <div id="secondPage" class="main">
+                <AboutMeApp />
+            </div>
         </div>
-      </main>
-      <div id="secondPage" class="main">
-        <AboutMeApp />
-      </div>
-    </div>
-  );
+    );
 };
 
 export default MainApp;

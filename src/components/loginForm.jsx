@@ -1,13 +1,41 @@
 import { FaTimes } from "react-icons/fa";
+import { useState } from "react";
+
 const LoginForm = ({username, setUsername, password, setPassword}) => {
-  
+  const [vusername, setVusername] = useState("");
+  const [vpassword, setVpassword] = useState("");
 
   const submit = () => {
+
+
     toogle();
     // => app.js => func fetch data
-    setUsername("");
-    setPassword("");
+      //You can reload the url like so
+    // var newUrl=setParam(window.location.href,"user", username);
+    // window.history.pushState("", "Page Title Here", newUrl);
+    // url.searchParams.set('user', username);
+
+
+    setUsername(vusername);
+    setVusername("");
+    setPassword(vpassword);
+    setVpassword("");
   };
+  function setParam(uri, key, val) {
+    return uri
+        .replace(RegExp("([?&]"+key+"(?=[=&#]|$)[^#&]*|(?=#|$))"), "&"+key+"="+encodeURIComponent(val))
+        .replace(/^([^?&]+)&/, "$1?");
+}
+  function updateQueryStringParameter(uri, key, value) {
+    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if (uri.match(re)) {
+      return uri.replace(re, '$1' + key + "=" + value + '$2');
+    }
+    else {
+      return uri + separator + key + "=" + value;
+    }
+  }
 
   const toogle = () => {
     document.getElementById("menu-window-toogle").checked =
@@ -55,7 +83,7 @@ const LoginForm = ({username, setUsername, password, setPassword}) => {
                   type="text"
                   name="login-username"
                   onChange={(e) => {
-                    setUsername(e.target.value);
+                    setVusername(e.target.value);
                   }}
                 />
                 <div>password</div>
@@ -63,7 +91,7 @@ const LoginForm = ({username, setUsername, password, setPassword}) => {
                   type="password"
                   name="login-password"
                   onChange={(e) => {
-                    setPassword(e.target.value);
+                    setVpassword(e.target.value);
                   }}
                 />
                 <input type="submit" value="Log in" className="addNoteBtn" />
