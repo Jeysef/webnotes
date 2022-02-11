@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import $ from "jquery";
 // import my components
 import Navigation from "./components/navigation";
 import Cards from "./components/noteComponents/cards";
@@ -10,7 +11,7 @@ import "./index.css";
 const MainApp = () => {
     // State Holder
     const [dUrl, setDUrl] = useState(
-        "https://api.jsonstorage.net/v1/json/90192964-b43a-4291-8184-278f70f45ce8/ff047acd-2dc5-43f9-8dc4-3687717f0bdb?apiKey=%5489b554-1a5e-4978-a915-b5fe3b8433af%"
+        "https://api.jsonstorage.net/v1/json/90192964-b43a-4291-8184-278f70f45ce8/ff047acd-2dc5-43f9-8dc4-3687717f0bdb?apiKey=5489b554-1a5e-4978-a915-b5fe3b8433af"
     );
     const [username, setUsername] = useState("load");
     const [password, setPassword] = useState("");
@@ -88,25 +89,42 @@ const MainApp = () => {
     };
 
     const postContent = async () => {
-        var parameters = JSON.stringify({
-            username: "myname",
-            password: "mypass",
-        });
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", dUrl, true);
+        // var parameters = JSON.stringify({
+        //     username: "myname",
+        //     password: "mypass",
+        // });
 
-        // xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
+        // var xhr = new XMLHttpRequest();
+        // xhr.open("POST", dUrl, true);
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                const dataOut = xhr.response;
-                console.log(dataOut);
-            } else {
-                alert("Something went wrong: " + xhr.status);
-            }
+        // // xhr.setRequestHeader("Accept", "application/json");
+        // xhr.setRequestHeader("application/json", "charset=utf-8");
+
+        // xhr.send(JSON.stringify(parameters));
+        // xhr.onload = () => alert(xhr.response);
+
+        var obj = {
+            key: "value",
+            key2: "value2",
         };
-        xhr.send(JSON.stringify(allData));
+
+        var data = JSON.stringify(obj);
+
+        $.ajax({
+            url: dUrl,
+            type: "POST",
+            data: data,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                alert("succes");
+                // load created json
+                $.get(data.uri, function (data, textStatus, jqXHR) {
+                    var json = JSON.stringify(data);
+                    setContent(copyOf(json));
+                });
+            },
+        });
     };
 
     /*
