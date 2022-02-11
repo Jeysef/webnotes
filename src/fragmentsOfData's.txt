@@ -1,72 +1,127 @@
 {
-    "load": {
-        "content": [
-            {
-                "id": 0,
-                "title": "loading...",
-                "notes": [
-                    {
-                        "content": "loading...",
-                        "id": 0,
-                        "mark": false
-                    }
-                ]
-            }
+  "load": {
+    "content": [
+      {
+        "id": 0,
+        "title": "loading...",
+        "notes": [
+          {
+            "content": "loading...",
+            "id": 0,
+            "mark": false
+          }
         ]
-    },
-    "user": {
-        "content": [
-            {
-                "id": 0,
-                "title": "user's card",
-                "notes": [
-                    {
-                        "content": "and this is note",
-                        "id": 0,
-                        "mark": false
-                    },
-                    {
-                        "content": "and this is note2",
-                        "id": 1,
-                        "mark": false
-                    }
-                ]
-            },
-            {
-                "id": 1,
-                "notes": [
-                    {
-                        "content": "and this is note",
-                        "id": 0,
-                        "mark": false
-                    },
-                    {
-                        "content": "and this is note2",
-                        "id": 1,
-                        "mark": false
-                    }
-                ],
-                "title": "card2"
-            },
-            {
-                "id": 2,
-                "notes": [
-                    {
-                        "content": "and this is note",
-                        "id": 0,
-                        "mark": false
-                    },
-                    {
-                        "content": "and this is note2",
-                        "id": 1,
-                        "mark": false
-                    }
-                ],
-                "title": "card3"
-            }
+      }
+    ]
+  },
+  "user": {
+    "content": [
+      {
+        "id": 0,
+        "title": "user's card",
+        "notes": [
+          {
+            "content": "and this is note",
+            "id": 0,
+            "mark": false
+          },
+          {
+            "content": "and this is note2",
+            "id": 1,
+            "mark": false
+          }
         ]
-    }
+      },
+      {
+        "id": 1,
+        "notes": [
+          {
+            "content": "and this is note",
+            "id": 0,
+            "mark": true
+          },
+          {
+            "content": "and this is note2",
+            "id": 1,
+            "mark": false
+          }
+        ],
+        "title": "card2"
+      },
+      {
+        "id": 2,
+        "notes": [
+          {
+            "content": "and this is note",
+            "id": 0,
+            "mark": false
+          },
+          {
+            "content": "and this is note2",
+            "id": 1,
+            "mark": false
+          }
+        ],
+        "title": "card3"
+      }
+    ]
+  },"user2": {
+    "content": [
+      {
+        "id": 0,
+        "title": "user2's card",
+        "notes": [
+          {
+            "content": "note for user2",
+            "id": 0,
+            "mark": false
+          },
+          {
+            "content": "and this is note2",
+            "id": 1,
+            "mark": true
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "notes": [
+          {
+            "content": "and this is note",
+            "id": 0,
+            "mark": false
+          },
+          {
+            "content": "and this is note2",
+            "id": 1,
+            "mark": false
+          }
+        ],
+        "title": "card2"
+      },
+      {
+        "id": 2,
+        "notes": [
+          {
+            "content": "and this is note",
+            "id": 0,
+            "mark": false
+          },
+          {
+            "content": "and this is note2",
+            "id": 1,
+            "mark": false
+          }
+        ],
+        "title": "card3"
+      }
+    ]
+  }
 }
+
+
+
+
 
 
 "content": [{

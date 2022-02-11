@@ -37,73 +37,76 @@ const MainApp = () => {
         const getTasks = async () => {
             console.log("FETCHING FROM SERVER");
 
-            fetchContent().then((contentFomServer) => {
-                console.log("contentFomServer", contentFomServer);
-            });
-            // console.log("contentFomServer", contentFomServer);
+            const contentFomServer = await fetchContent();
+
             // setAllData(contentFomServer);
-            // console.log("alldata", allData);
-            // setContent(allData[username]);
+            console.log("alldata", allData);
+            if (allData[username]) {
+                setContent(allData[username]);
+            } else if (username != "load" && username) {
+                alert(
+                    "Wrong or unregistered username, please try log in again"
+                );
+                setContent({
+                    content: [
+                        {
+                            id: 0,
+                            title: "loading...",
+                            notes: [
+                                {
+                                    content: "loading...",
+                                    id: 0,
+                                    mark: false,
+                                },
+                            ],
+                        },
+                    ],
+                });
+            }
             // setContent(contentFomServer);
             // console.log(content, 'new content');
         };
+
         getTasks();
     }, [username]);
 
     const fetchContent = async () => {
-      const getJSON = async (url, callback) => {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.responseType = "json";
-            xhr.onload = function () {
-                var status = xhr.status;
-                if (status === 200) {
-                    callback(null, xhr.response);
-                } else {
-                    callback(status, xhr.response);
-                }
-            };
-            xhr.send();
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", dUrl, true);
+        xhr.responseType = "json";
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                const dataOut = xhr.response;
+                console.log(dataOut);
+                setAllData(dataOut);
+            } else {
+                alert("Something went wrong: " + status);
+            }
         };
-        const retFunc = (err, data) => {
-          if (err !== null) {
-              alert("Something went wrong: " + err);
-          } else {
-              console.log("data0", data);
-              return data
-          }
-        }
-        return await getJSON(dUrl, retFunc);
-        
+        xhr.send();
     };
 
     const postContent = async () => {
-        var postJSON = function (url, callback) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", url, true);
-
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.setRequestHeader("Content-Type", "application/json");
-
-            xhr.onreadystatechange = function () {
-                var status = xhr.status;
-                if (status === 4) {
-                    callback(null, xhr.response);
-                } else {
-                    callback(status, xhr.response);
-                }
-            };
-            xhr.send(content);
-        };
-        postJSON(dUrl, function (err, data) {
-            if (err !== null) {
-                alert("Something went wrong: " + err);
-            } else {
-                console.log("Send Data OK");
-
-                fetchContent();
-            }
+        var parameters = JSON.stringify({
+            username: "myname",
+            password: "mypass",
         });
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", dUrl, true);
+
+        // xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                const dataOut = xhr.response;
+                console.log(dataOut);
+            } else {
+                alert("Something went wrong: " + xhr.status);
+            }
+        };
+        xhr.send(JSON.stringify(allData));
     };
 
     /*
@@ -195,6 +198,23 @@ const MainApp = () => {
 
     const card = useRef();
 
+    const toogleOverlay = () => {
+        document.getElementById("menu-window-toogleOverlay").checked =
+            !document.getElementById("menu-window-toogleOverlay").checked;
+        if (document.getElementById("menu-window-toogleOverlay").checked) {
+            // console.log(document.getElementsByClassName("menu-window-center")[0].style)
+            document.getElementsByClassName(
+                "menu-window-center"
+            )[0].style.transform = "translate(-50%, -50%) scale(0)";
+            document.getElementById("overlay").style.transform = "scale(0)";
+        } else {
+            document.getElementsByClassName(
+                "menu-window-center"
+            )[0].style.transform = "translate(-50%, -50%) scale(1)";
+            document.getElementById("overlay").style.transform = "scale(1)";
+        }
+    };
+
     return (
         <div className="pageContainer">
             <Navigation
@@ -202,15 +222,12 @@ const MainApp = () => {
                 setUsername={setUsername}
                 password={password}
                 setPassword={setPassword}
+                toogleOverlay={toogleOverlay}
+                postContent={postContent}
             />
             <main id="main" class="main">
                 <div id="content" className="wrapper">
-                    <div
-                        id="overlay"
-                        onClick={(e) => {
-                            e.target.style.display = "none";
-                        }}
-                    ></div>
+                    <div id="overlay" onClick={toogleOverlay}></div>
                     <NewCardForm NewCardHandler={AddNewCardHandler} />
                     <Cards
                         ref={card}

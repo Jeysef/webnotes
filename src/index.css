@@ -1752,7 +1752,7 @@ footer a:hover {
   border-radius: 0.25rem;
 }
 
-#menu-window-toogle:checked ~ .menu-window-center {
+#menu-window-toogleOverlay:checked ~ .menu-window-center {
   -webkit-transform: scale(0) !important;
   -ms-transform: scale(0) !important;
   transform: scale(0) !important;
