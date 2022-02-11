@@ -17,15 +17,15 @@ const MainApp = () => {
     const [password, setPassword] = useState("");
     const [allData, setAllData] = useState({});
     const [content, setContent] = useState({
-        content: [
+        "content": [
             {
-                id: 0,
-                title: "loading...",
-                notes: [
+                "id": 0,
+                "title": "loading...",
+                "notes": [
                     {
-                        content: "loading...",
-                        id: 0,
-                        mark: false,
+                        "content": "loading...",
+                        "id": 0,
+                        "mark": false,
                     },
                 ],
             },
