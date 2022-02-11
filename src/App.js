@@ -79,7 +79,7 @@ const MainApp = () => {
             var status = xhr.status;
             if (status === 200) {
                 const dataOut = xhr.response;
-                console.log(dataOut);
+                console.log("dataUot", dataOut);
                 setAllData(dataOut);
             } else {
                 alert("Something went wrong: " + status);
@@ -103,16 +103,17 @@ const MainApp = () => {
         // xhr.send(JSON.stringify(parameters));
         // xhr.onload = () => alert(xhr.response);
 
-        var obj = {
-            key: "value",
-            key2: "value2",
-        };
+        fetchContent();
+        const becontent = copyOf(allData);
+        becontent[username] = content;
 
-        var data = JSON.stringify(obj);
+        console.log("dfsfdfd", becontent);
+
+        var data = JSON.stringify(becontent);
 
         $.ajax({
             url: dUrl,
-            type: "POST",
+            type: "PUT",
             data: data,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -121,7 +122,7 @@ const MainApp = () => {
                 // load created json
                 $.get(data.uri, function (data, textStatus, jqXHR) {
                     var json = JSON.stringify(data);
-                    setContent(copyOf(json));
+                    console.log(copyOf(json));
                 });
             },
         });
