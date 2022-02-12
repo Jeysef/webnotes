@@ -17,15 +17,15 @@ const MainApp = () => {
     const [password, setPassword] = useState("");
     const [allData, setAllData] = useState({});
     const [content, setContent] = useState({
-        "content": [
+        content: [
             {
-                "id": 0,
-                "title": "loading...",
-                "notes": [
+                id: 0,
+                title: "loading...",
+                notes: [
                     {
-                        "content": "loading...",
-                        "id": 0,
-                        "mark": false,
+                        content: "loading...",
+                        id: 0,
+                        mark: false,
                     },
                 ],
             },
@@ -95,7 +95,7 @@ const MainApp = () => {
         // });
 
         // var xhr = new XMLHttpRequest();
-        // xhr.open("POST", dUrl, true);
+        // xhr.open("PUT", dUrl, true);
 
         // // xhr.setRequestHeader("Accept", "application/json");
         // xhr.setRequestHeader("application/json", "charset=utf-8");
@@ -133,6 +133,17 @@ const MainApp = () => {
   * FUNCTIONS
 
   */
+
+    $("#content").on("mousewheel", function (e) {
+        e.preventDefault();
+        const scrollLeft = $("#scrollho").scrollLeft();
+        if (e.originalEvent.wheelDeltaY.toString().slice(0, 1) == "-") {
+            $("#scrollho").scrollLeft(scrollLeft + 100);
+        } else {
+            $("#scrollho").scrollLeft(scrollLeft - 100);
+        }
+    });
+
     const copyOf = (Data) => {
         return JSON.parse(JSON.stringify(Data));
     };
@@ -192,9 +203,6 @@ const MainApp = () => {
         setContent(becontent);
     };
     const deleteCard = async (cardId) => {
-        // await fetch(`https://json.extendsclass.com/bin/138ae146c385`, {
-        //   method: "DELETE",
-        // });
         const becontent = copyOf(content);
         for (var i = 0; i < becontent["content"].length; i++) {
             if (becontent["content"][i]["id"] === cardId) {
@@ -245,7 +253,13 @@ const MainApp = () => {
                 postContent={postContent}
             />
             <main id="main" class="main">
-                <div id="content" className="wrapper">
+                <div
+                    id="content"
+                    className="wrapper"
+                    onScroll={(e) => {
+                        e.preventDefault();
+                    }}
+                >
                     <div id="overlay" onClick={toogleOverlay}></div>
                     <NewCardForm NewCardHandler={AddNewCardHandler} />
                     <Cards

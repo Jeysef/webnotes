@@ -25,13 +25,14 @@ const Navigation = ({
 
     return (
         <nav id="topBottomNavigation" class="topBottomNavigation">
-            <div className="logo">
+            <div className="logo" >
                 <div>
                     <img
                         className="imageIcon"
                         src={process.env.PUBLIC_URL + "/img/favicon.ico"}
                         alt="Icon"
                     />
+                <a href="#main"></a>
                 </div>
             </div>
             <div className="topBottomNavigation-menu-wrapper ms-hiddenSm">
