@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import $ from "jquery";
+import jQuery from "jquery";
+
 // import my components
 import Navigation from "./components/navigation";
 import Cards from "./components/noteComponents/cards";
@@ -134,13 +136,20 @@ const MainApp = () => {
 
   */
 
-    $("#content").on("mousewheel", function (e) {
-        e.preventDefault();
-        const scrollLeft = $("#scrollho").scrollLeft();
-        if (e.originalEvent.wheelDeltaY.toString().slice(0, 1) == "-") {
-            $("#scrollho").scrollLeft(scrollLeft + 100);
-        } else {
-            $("#scrollho").scrollLeft(scrollLeft - 100);
+    jQuery("body").on("DOMSubtreeModified", function () {
+        if (
+            $(".Card").mousewheel(function (e, delta) {
+                if (delta == 0) {
+                    return true;
+                }
+                this.scrollTop -= delta * 30;
+                return false;
+            })
+        ) {
+            $(".wrapper").mousewheel(function (e, delta) {
+                this.scrollLeft -= delta * 60;
+                e.preventDefault();
+            });
         }
     });
 
