@@ -956,6 +956,8 @@ body {
 }
 
 .topBottomNavigation-menu-button {
+  height: 70%;
+  width: max-content;
   position: relative;
   /* display: inline; */
   /* --bg-opacity: 1; */
@@ -979,6 +981,25 @@ body {
   padding-right: 0.75rem;
   font-size: 1.15rem;
 }
+.btn-save-active {
+  background-color: var(--main-button-green);
+}
+.btn-save-active:hover {
+  background-color: var(--main-button-green-hover);
+}
+.btn-save-active:active {
+  background-color: var(--main-button-green-active);
+}
+.btn-save-pasive {
+  background-color: var(--navigation-button-bg);
+}
+.btn-save-pasive:hover {
+  background-color: var(--navigation-button-bg);
+}
+.btn-save-pasive:active {
+  background-color: var(--navigation-button-bg);
+}
+
 
 .BackgroundColorDropMenu {
   border-radius: 0.25rem;

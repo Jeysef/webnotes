@@ -67,7 +67,7 @@ const Menulist = ({menu}) => {
         </a>
       </li>
       <li>
-        <a
+        <p
           className="menu-item"
           href="#secondPage"
           onClick={(event) => {
@@ -75,6 +75,17 @@ const Menulist = ({menu}) => {
           }}
         >
           {menu[3]}
+        </p>
+      </li>
+      <li>
+        <a
+          className="menu-item"
+          href="#secondPage"
+          onClick={(event) => {
+            toogle(event);
+          }}
+        >
+          {menu[4]}
         </a>
       </li>
     </ul>
