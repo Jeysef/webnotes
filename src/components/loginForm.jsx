@@ -1,64 +1,75 @@
 import { FaTimes } from "react-icons/fa";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const LoginForm = ({
-  username,
-  setUsername,
-  password,
-  setPassword,
   toogleOverlay,
   toogleLoginForm,
+  handleLogIn,
+  handleSignUp,
 }) => {
   const [vusername, setVusername] = useState("");
   const [vpassword, setVpassword] = useState("");
+  const [submitBtnValue, setSubmitBtnValue] = useState("Log In");
 
   const submit = () => {
     toogleOverlay();
     toogleLoginForm();
-    // => app.js => func fetch data
-    //You can reload the url like so
-    // var newUrl=setParam(window.location.href,"user", username);
-    // window.history.pushState("", "Page Title Here", newUrl);
-    // url.searchParams.set('user', username);
 
-    setUsername(vusername);
-    setVusername("");
-    setPassword(vpassword);
-    setVpassword("");
-  };
-  function setParam(uri, key, val) {
-    return uri
-      .replace(
-        RegExp("([?&]" + key + "(?=[=&#]|$)[^#&]*|(?=#|$))"),
-        "&" + key + "=" + encodeURIComponent(val)
-      )
-      .replace(/^([^?&]+)&/, "$1?");
-  }
-  function updateQueryStringParameter(uri, key, value) {
-    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-    var separator = uri.indexOf("?") !== -1 ? "&" : "?";
-    if (uri.match(re)) {
-      return uri.replace(re, "$1" + key + "=" + value + "$2");
-    } else {
-      return uri + separator + key + "=" + value;
+    if (submitBtnValue == "Log In") {
+      handleLogIn({ username: vusername, password: vpassword });
+    } else if (submitBtnValue == "Sign Up") {
+      handleSignUp({ username: vusername, password: vpassword });
     }
-  }
+  };
 
+  // const list = document.querySelectorAll(".logMode-list");
+  const activeLink = (e) => {
+    const clicked = e.target;
+    document.querySelectorAll(".logMode-list").forEach((item) => item.classList.remove("active"));
+    clicked.classList.add("active");
+
+    if (clicked.textContent == "Log In") {
+      setSubmitBtnValue("Log In");
+    } else if (clicked.textContent == "Sign Up") {
+      // document.getElementById("logMode-btn").value = "Sign Up";
+      setSubmitBtnValue("Sign Up");
+    }
+  };
+
+  // list.forEach((item) => {
+  //   item.addEventListener("click", activeLink);
+  // });
   return (
     <>
       <div className="menu-window-center">
         <div style={{ borderRadius: "0.25rem" }}>
           <div className="NotePopupTitle">
-            <span
-              className="button"
+            <div
+              className="NotePopupTitleCild logMode-wrapper"
               style={{
-                justifyContent: "center",
+                padding: "0",
+                paddingTop: "10px",
+                justifyContent: "start",
                 width: "100%",
+                height: "45px",
                 display: "grid",
                 overflow: "visible",
               }}
             >
-              Please log in
+              <div className="logMode">
+                <ul>
+                  <li className="logMode-list active" onClick={activeLink}>Log In</li>
+                  <li className="logMode-list" onClick={activeLink}>Sign Up</li>
+                  <div className="logMode-indicator">
+                    <div>
+                      <div></div>
+                    </div>
+                    <div>
+                      <div></div>
+                    </div>
+                  </div>
+                </ul>
+              </div>
               <span
                 className="login-form-x"
                 onClick={() => {
@@ -68,7 +79,8 @@ const LoginForm = ({
               >
                 <FaTimes />
               </span>
-            </span>
+              <div className="logMode-bottomPanel"></div>
+            </div>
             <div class="login-form-wrapper">
               {/* <div className="login-form-title"></div> */}
               <form
@@ -94,7 +106,12 @@ const LoginForm = ({
                     setVpassword(e.target.value);
                   }}
                 />
-                <input type="submit" value="Log in" className="addNoteBtn" />
+                <input
+                  id="logMode-btn"
+                  type="submit"
+                  value={submitBtnValue}
+                  className="addNoteBtn"
+                />
               </form>
             </div>
           </div>

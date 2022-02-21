@@ -1,0 +1,62 @@
+.menu-window-center {
+  z-index: 5;
+  /* transform: scale(1); */
+  cursor: initial;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
+  background-color: var(--main-white);
+  overflow: hidden;
+  border-radius: 0.25rem;
+}
+
+.NotePopupTitle > span {
+  font-weight: bold;
+  padding: 10px;
+}
+.login-form-x {
+  display: inline-grid;
+  width: 10%;
+  align-self: flex-end;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  margin: auto;
+  background: aqua;
+  justify-self: right;
+  justify-content: center;
+  height: 100%;
+  align-content: center;
+  border-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.login-form {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto auto;
+}
+
+.login-form > div,
+.login-form > input {
+  padding: 5px;
+  margin: 5px;
+}
+
+.login-form > input:nth-of-type(1),
+.login-form > input:nth-of-type(2) {
+  background-color: var(--main-gray1);
+}
+
+.login-form > input:last-of-type {
+  -ms-grid-column: 1;
+  grid-column-start: 1;
+  -ms-grid-column-span: 2;
+  grid-column-end: 3;
+  /* background-color: var(--main-button-green); */
+}

@@ -80,6 +80,7 @@ Use a more readable tab size (opinionated).
   --second-lightblue: #82d5d5;
   --second-bg-main: var(--second-darkblue);
   --second-bg-second: var(--second-lightblue);
+  --login_form-button-bg: #36ceec;
   /* ? My collor pallete */
 }
 
@@ -584,12 +585,15 @@ textarea,
 button,
 select,
 a {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 /* START HERE */
 
 /* MY  OWN elements */
+body {
+  overflow-y: visible;
+}
 
 colors {
   display: -webkit-box;
@@ -1000,7 +1004,6 @@ body {
   background-color: var(--navigation-button-bg);
 }
 
-
 .BackgroundColorDropMenu {
   border-radius: 0.25rem;
   left: 0;
@@ -1039,6 +1042,23 @@ body {
   cursor: pointer;
   border-radius: 0.25rem;
 }
+.NotePopupTitleCild {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  right: 0;
+  top: 0;
+  font-family: Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  cursor: pointer;
+  border-radius: 0.25rem;
+
+  font-weight: bold;
+  padding: 0;
+}
+
 
 .NotePopupTitle > input {
   -webkit-box-pack: center;
@@ -1131,7 +1151,7 @@ body {
 }
 
 .Card {
-  max-height: 80vh;
+  max-height: none;
   position: relative;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1143,9 +1163,9 @@ body {
   color: var(--main-gray4);
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   -webkit-transition: all;
   -o-transition: all;
   transition: all;
@@ -1786,6 +1806,7 @@ footer a:hover {
 }
 
 .menu-window-center {
+  width: 300px;
   z-index: 5;
   /* transform: scale(1); */
   cursor: initial;
@@ -1804,6 +1825,104 @@ footer a:hover {
   -webkit-transform: scale(0) !important;
   -ms-transform: scale(0) !important;
   transform: scale(0) !important;
+}
+.logMode-wrapper {
+  border: none;
+display: flex;
+justify-content: space-between;
+padding: 8px 16px;
+vertical-align: middle;
+overflow: hidden;
+text-decoration: none;
+background-color: transparent;
+text-align: center;
+cursor: pointer;
+white-space: normal;
+background-color: var(--main-button);
+}
+.logMode {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 90%;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: 0.5s;
+}
+.logMode ul {
+  display: flex;
+  width: 100%;
+}
+.logMode ul li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 135px;
+  height: 35px;
+  letter-spacing: 0.05em;
+  z-index: 1;
+
+}
+.logMode ul li:nth-child(1).active ~ .logMode-indicator {
+  transform: translateX(calc(135px * 0));
+}
+.logMode ul li:nth-child(2).active ~ .logMode-indicator {
+  transform: translateX(calc(135px * 1));
+}
+.logMode li.active {
+  display: flex;
+}
+.logMode-indicator {
+  position: absolute;
+  width: 125px;
+  height: 100%;
+  bottom: 1px;
+  background-color: var(--login_form-button-bg);
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  transition: .5s;
+  margin-left: 5px;
+
+  box-shadow: inset rgba(136, 165, 191, 0.48) 6px 2px 16px 0px;
+}
+.logMode-indicator div:nth-child(1) {
+  position: absolute;
+  bottom: 0%;
+  left: -5px;
+  width: 5px;
+  height: 5px;
+  background-color: var(--login_form-button-bg);
+}
+.logMode-indicator div:nth-child(1) div {
+  position: absolute;
+  inset: 0;
+  background-color: var(--main-button);
+  
+  border-bottom-right-radius: 50%;
+}
+.logMode-indicator div:nth-child(2) {
+  position: absolute;
+  bottom: 0%;
+  right: -5px;
+  width: 5px;
+  height: 5px;
+  background-color: var(--login_form-button-bg);
+}
+.logMode-indicator div:nth-child(2) div {
+  position: absolute;
+  inset: 0;
+  background-color: var(--main-button);
+  border-bottom-left-radius: 50%;
+}
+.logMode-bottomPanel {
+  position: absolute;
+width: 100%;
+height: 10%;
+bottom: 0;
+left: 0;
+background-color: var(--login_form-button-bg);
 }
 
 .login-form > div,
@@ -1848,7 +1967,11 @@ footer a:hover {
   :root {
     --headerHeight: 40px;
   }
+  body {
+    overflow-y: hidden;
+  }
   .Card {
+    max-height: 80vh;
     margin-left: 1rem;
     margin-right: 1rem;
     margin-bottom: 0;

@@ -1,14 +1,74 @@
 import PropTypes from "prop-types";
-import React from "react";
+import { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 
-const Notes = ({ contentNotes, deleteNote, cardId, noteMarkerer }) => {
-  Notes.PropTypes = {
+const Notes = ({
+  content,
+  setContent,
+  contentNotes,
+  deleteNote,
+  cardId,
+  cardEd,
+  noteMarkerer,
+  beChanging,
+  setBeChanging,
+}) => {
+  Notes.propTypes = {
     contentNotes: PropTypes.array,
     deleteNote: PropTypes.func,
     cardId: PropTypes.number,
     noteMarkerer: PropTypes.func,
+    beChanging: PropTypes.bool,
+    setBeChanging: PropTypes.func,
   };
+  const [noteTitle, setNoteTitle] = useState({ value: "", id: -1 });
+  const [savedSelection, setsavedSelection] = useState();
+  // -----------
+
+  // ------------
+
+  const copyOf = (Data) => {
+    return JSON.parse(JSON.stringify(Data));
+  };
+  // const onChangeHandler = (event) => {
+  //   console.log(event.target);
+  //   let targetValue = event.target.textContent;
+  //   //save caret position(s), so can restore when component reloads
+  //   let savedCaretPosition = doSave(event.target);
+  //   setCaretPosition(
+  //     {
+  //       newValue: targetValue,
+  //       caretPosition: savedCaretPosition,
+  //     },
+  //     () => {
+  //       //restore caret position(s)
+  //       doRestore(
+  //         document.getElementsByClassName("NoteTextarea")[noteTitle.id],
+  //         CaretPosition
+  //       );
+  //     }
+  //   );
+  // };
+  useEffect(() => {
+    if (noteTitle.id !== -1) {
+      const becontent = copyOf(content);
+      for (var j = 0; j < becontent["content"][cardId]["notes"].length; j++) {
+        if (becontent["content"][cardId]["notes"][j]["id"] === noteTitle.id) {
+          becontent["content"][cardId]["notes"][j]["content"] = noteTitle.value;
+          break;
+        }
+      }
+
+      setContent(becontent);
+    }
+  }, [noteTitle]);
+  useEffect(() => {
+    if (beChanging) {
+      setNoteTitle({ value: "", id: -1 });
+      setBeChanging(false);
+    }
+  }, [beChanging]);
+
   if (contentNotes) {
     return contentNotes.map((note) => (
       <li
@@ -34,9 +94,24 @@ const Notes = ({ contentNotes, deleteNote, cardId, noteMarkerer }) => {
             </div>
           </div>
         </div>
-        <p className="NoteTextarea" contentEditable="true" spellCheck="false">
-          {note.content}
-        </p>
+        <div
+          className="NoteTextarea"
+          // contentEditable
+          // suppressContentEditableWarning="true"
+          spellCheck="false"
+          onInput={(e) => {
+            // onChangeHandler.bind(this);
+            // onChangeHandler(e);
+            // doSave("ff", note.id);
+            // setNoteTitle({ value: e.target.textContent, id: note.id });
+
+
+            console.log(e.target);
+            // doRestore(e.target, note.id);
+          }}
+        >
+          {noteTitle.id === note.id ? noteTitle.value : note.content}
+        </div>
         <div className="flex-evenly">
           {/*  button for menu  */}
 
@@ -53,7 +128,7 @@ const Notes = ({ contentNotes, deleteNote, cardId, noteMarkerer }) => {
           <button
             className="LinksWrapper"
             onClick={() => {
-              deleteNote(cardId, note.id);
+              deleteNote(cardEd, note.id);
             }}
           >
             <div className="deleteNote">

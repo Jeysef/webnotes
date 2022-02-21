@@ -8,8 +8,10 @@ import Navigation from "./components/navigation";
 import Cards from "./components/noteComponents/cards";
 import AboutMeApp from "./components/aboutMeApp";
 import NewCardForm from "./components/noteComponents/newCardForm";
+import LoginForm from "./components/loginForm";
+
 // import styles
-import "./index.css";
+// import "./index.css";
 
 const MainApp = () => {
   const loadingJson = {
@@ -31,79 +33,148 @@ const MainApp = () => {
   const [password, setPassword] = useState("");
   const [allData, setAllData] = useState({});
   const [content, setContent] = useState(loadingJson);
+  const [beChanging, setBeChanging] = useState(false);
 
   /*
   
   * FUNCTIONS
   
   */
+  const clearBeforeChange = () => {
+    setBeChanging(true);
+  };
+  const handleLogIn = (userData) => {
+    const username = userData.username;
+    const password = userData.password;
 
-  useEffect(() => {
-    const getTasks = async () => {
-      console.log("FETCHING_FROM_SERVER");
-      await fetchContent(function (data) {
-        setAllData(data);
-      });
-      if (allData[username]) {
-        //   no error
-        setContent(allData[username]);
-      } else if (username) {
-        //   all errors
-        if (allData.keys() >= 1) {
-          console.log("corrupted data", allData);
-          alert("We are sorry, but our database is corrupted");
-        } else if (
-          !UrlExists(jsonDataUrl, function (status) {
-            if (status === 200) {
-              // Execute code if successful
-              return true;
-            } else if (status === 404) {
-              // Execute code if not successful
-              return false;
-            } else {
-              // Execute code if status doesn't match above
-              return false;
-            }
-          })
-        ) {
-          alert("Sorry our database do not exist");
-        } else {
-          alert("Wrong or unregistered username, please try log in again");
-        }
-        // set to default
-        setContent(loadingJson);
-      }
-      // setContent(contentFomServer);
-      // console.log(content, 'new content');
-    };
+    console.log("FETCHING_FROM_SERVER");
+    clearBeforeChange();
 
-    getTasks();
-  }, [username]);
+    fetchAllData();
+    // const dataaa = await fetchContent(function (data) {
+    //   setAllData(data);
+    // });
+    // await fetch(jsonDataUrl)
+    //   .then((r) => r.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setAllData(data);
+    //     // callback(data);
+    //     // return data
+    //   })
+    //   .catch((e) => console.log("Booo"));
+    // const initFetch = async () => {
+    //   const gog = await fetchContent(function (data) {
+    //     setAllData(data);
+    //   });
+    //   return gog;
+    // };
 
+    // console.log(await initFetch());
+    // setAllData(await initFetch());
+    // console.log(allData, allData[username]);
+
+    // catch errors
+    if (Object.entries(allData).length === 0) {
+      alert("couldnt fetch from database");
+    } else if (!allData[username]) {
+      alert("User do not exist.");
+    } else {
+      console.log("DATA_FETCHED_SUCCESFULLY");
+      setUsername(username);
+      setPassword(password);
+      setContent(allData[username]);
+    }
+  };
+  const handleSignUp = (userData) => {
+    const username = userData.username;
+    const password = userData.password;
+
+    console.log("FETCHING_FROM_SERVER");
+    clearBeforeChange();
+    fetchAllData();
+
+    // check if username is valid
+    if (username === ("load" | "")) {
+      alert("This username can not be used.");
+    }
+    // catch errors
+    else if (!allData) {
+      alert("couldnt fetch from database");
+    }
+    // check if username already exist
+    else if (allData[username]) {
+      alert("User already exist. Log in.");
+    } else {
+      console.log("DATA_FETCHED_SUCCESFULLY");
+      createNewUser(userData);
+      setUsername(username);
+      setPassword(password);
+    }
+  };
+  const fetchAllData = async () => {
+    console.log("FETCHING_FROM_SERVER");
+    await fetchContent(function (data) {
+      setAllData(data);
+    });
+  };
   const fetchContent = async (callback) => {
-    var xhr = new XMLHttpRequest();
+    try {
+      const r = await fetch(jsonDataUrl);
+      const data = await r.json();
+      callback(data);
+      return data;
+    } catch (e) {
+      return console.log("something went wrong");
+    }
 
-    xhr.open("GET", jsonDataUrl, true);
-    xhr.responseType = "json";
+    //   $.getJSON(jsonDataUrl, function (data) {
+    //     callback(data);
+    //   });
+    //   var request = $.ajax({
+    //     type: 'GET',
+    //     url: "http://google.com",
+    //     async: true,
+    //     success: function (data, textStatus, jqXHR) {
+    //       alert("succes");
+    //       // load sended json
+    //       $.get(data.uri, function (data, textStatus, jqXHR) {
+    //         //   var json = JSON.stringify(data);
+    //         console.log(copyOf(data));
+    //       });
+    //     },
+    //     error: function (event, jqxhr, settings) {
+    //       if (settings.url.indexOf("nonexistentfile.htm") !== -1) {
+    //         alert("something went wrong");
+    //       } else if (settings.url.indexOf("nonexistentjsonfile.htm") !== -1) {
+    //         alert("something went wrong");
+    //       }
+    //     },
+    // });
 
-    xhr.onload = function () {
-      var status = xhr.status;
-      if (status === 200) {
-        const dataOut = xhr.response;
-        const data = copyOf(dataOut);
-        // console.log("dataUot", data);
-        // setAllData(dataOut);
-        callback(data);
-      } else {
-        alert("Sorry, can not fetch data from server. Error:  " + status);
-      }
-    };
-    xhr.send();
+    // var xhr = new XMLHttpRequest();
+
+    // xhr.open("GET", jsonDataUrl, true);
+    // xhr.responseType = "json";
+
+    // xhr.onload = function () {
+    //   var status = xhr.status;
+    //   if (status === 200) {
+    //     const dataOut = xhr.response;
+    //     const data = copyOf(dataOut);
+    //     console.log("dataUot", data);
+    //     // setAllData(dataOut);
+    //     callback(data);
+    //   } else {
+    //     alert("Sorry, can not fetch data from server. Error:  " + status);
+    //   }
+    // };
+    // xhr.send();
   };
   const postContent = async () => {
     //   must done this with jquery because i cannot done it with xhr
     // fetch content to get actual data
-    fetchContent();
+    fetchAllData();
     // modify state
     const becontent = copyOf(allData);
     becontent[username] = content;
@@ -121,17 +192,98 @@ const MainApp = () => {
         // load sended json
         $.get(data.uri, function (data, textStatus, jqXHR) {
           //   var json = JSON.stringify(data);
-          console.log(copyOf(data));
+          setAllData(copyOf(data));
         });
       },
       error: function (event, jqxhr, settings) {
-        if (settings.url.indexOf("nonexistentfile.htm") != -1) {
+        if (settings.url.indexOf("nonexistentfile.htm") !== -1) {
           alert("something went wrong");
-        } else if (settings.url.indexOf("nonexistentjsonfile.htm") != -1) {
+        } else if (settings.url.indexOf("nonexistentjsonfile.htm") !== -1) {
           alert("something went wrong");
         }
       },
     });
+  };
+  const createNewUser = async (userData) => {
+    console.log("CREATING_NEW_USER");
+    //   must done this with jquery because i cannot done it with xhr
+    // fetch content to get actual data
+    await fetchContent(function (data) {
+      setAllData(data);
+    });
+    // modify state
+    const becontent = copyOf(allData);
+    // becontent[username] = content;
+    const userUsername = userData.username;
+    const userPassword = userData.password;
+    const newUser = {
+      [userUsername]: {
+        content: [
+          {
+            id: 0,
+            title: "Start by renaming this card",
+            notes: [
+              {
+                content: "And then you can add notes like this one.",
+                id: 0,
+                mark: false,
+              },
+            ],
+          },
+        ],
+        password: userPassword,
+      },
+    };
+
+    const newbecontent = {
+      ...becontent,
+      ...newUser,
+    };
+    console.log(newbecontent);
+    // becontent[username] = content;
+    // save state to data
+    var data = JSON.stringify(becontent);
+
+    $.ajax({
+      url: jsonDataUrl,
+      type: "PUT",
+      data: data,
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (data, textStatus, jqXHR) {
+        setContent({
+          content: [
+            {
+              id: 0,
+              title: "Start by renaming this card",
+              notes: [
+                {
+                  content: "And then you can add notes like this one.",
+                  id: 0,
+                  mark: false,
+                },
+              ],
+            },
+          ],
+          password: userPassword,
+        });
+        alert("Succesfully created new user: ", userUsername);
+        // load sended json
+        $.get(data.uri, function (data, textStatus, jqXHR) {
+          //   var json = JSON.stringify(data);
+          console.log("fetched data", copyOf(data));
+        });
+      },
+      error: function (event, jqxhr, settings) {
+        if (settings.url.indexOf("nonexistentfile.htm") !== -1) {
+          alert("something went wrong");
+        } else if (settings.url.indexOf("nonexistentjsonfile.htm") !== -1) {
+          alert("something went wrong");
+        }
+      },
+    });
+    // save for sake
+    postContent();
   };
   const UrlExists = (url, cb) => {
     jQuery.ajax({
@@ -232,36 +384,54 @@ const MainApp = () => {
 
   const signUp = () => {
     if (document.getElementById("menu-window-toogleOverlay").checked) {
-        // console.log(document.getElementsByClassName("menu-window-center")[0].style)
-        document.getElementsByClassName("menu-window-center")[0].style.transform =
-          "translate(-50%, -50%) scale(0)";
-        document.getElementById("overlay").style.transform = "scale(0)";
-      } else {
-        document.getElementsByClassName("menu-window-center")[0].style.transform =
-          "translate(-50%, -50%) scale(1)";
-        document.getElementById("overlay").style.transform = "scale(1)";
-      }}      
-        
-  
+      // console.log(document.getElementsByClassName("menu-window-center")[0].style)
+      document.getElementsByClassName("menu-window-center")[0].style.transform =
+        "translate(-50%, -50%) scale(0)";
+      document.getElementById("overlay").style.transform = "scale(0)";
+    } else {
+      document.getElementsByClassName("menu-window-center")[0].style.transform =
+        "translate(-50%, -50%) scale(1)";
+      document.getElementById("overlay").style.transform = "scale(1)";
+    }
+  };
 
   const toogleOverlay = () => {
     document.getElementById("menu-window-toogleOverlay").checked =
       !document.getElementById("menu-window-toogleOverlay").checked;
-    };
-const toogleLoginForm = () => {
+  };
+  const toogleLoginForm = () => {
     if (document.getElementById("menu-window-toogleOverlay").checked) {
-    // console.log(document.getElementsByClassName("menu-window-center")[0].style)
-    document.getElementsByClassName("menu-window-center")[0].style.transform =
-      "translate(-50%, -50%) scale(0)";
-    document.getElementById("overlay").style.transform = "scale(0)";
-  } else {
-    document.getElementsByClassName("menu-window-center")[0].style.transform =
-      "translate(-50%, -50%) scale(1)";
-    document.getElementById("overlay").style.transform = "scale(1)";
-  }}      
-    
+      // console.log(document.getElementsByClassName("menu-window-center")[0].style)
+      document.getElementsByClassName("menu-window-center")[0].style.transform =
+        "translate(-50%, -50%) scale(0)";
+      document.getElementById("overlay").style.transform = "scale(0)";
+    } else {
+      document.getElementsByClassName("menu-window-center")[0].style.transform =
+        "translate(-50%, -50%) scale(1)";
+      document.getElementById("overlay").style.transform = "scale(1)";
+    }
+  };
 
   const card = useRef();
+
+  useEffect(() => {
+    const getData = async () => {
+      console.log("FETCHING_FROM_SERVER");
+      await fetchContent(function (data) {
+        setAllData(data);
+      });
+      console.log("DATA_FETCHED_SUCCESFULLY");
+    };
+    getData();
+  }, [username]);
+  // useEffect(() => {
+  //   const dooIt = async () => {
+  //     if (Object.entries(allData).length !== 0) {
+  //       setContent(allData[username]);
+  //     }
+  //   };
+  //   dooIt();
+  // }, [allData]);
 
   return (
     <div className="pageContainer">
@@ -274,6 +444,13 @@ const toogleLoginForm = () => {
         toogleLoginForm={toogleLoginForm}
         postContent={postContent}
         signUp={signUp}
+        createNewUser={createNewUser}
+      />
+      <LoginForm
+        toogleOverlay={toogleOverlay}
+        toogleLoginForm={toogleLoginForm}
+        handleLogIn={handleLogIn}
+        handleSignUp={handleSignUp}
       />
       <main id="main" class="main">
         <div
@@ -288,11 +465,13 @@ const toogleLoginForm = () => {
           <Cards
             ref={card}
             content={content}
+            setContent={setContent}
             newNoteHandler={AddNewNoteHandler}
             deleteNote={deleteNote}
             deleteCard={deleteCard}
             noteMarkerer={markNote}
-            setContent={setContent}
+            beChanging={beChanging}
+            setBeChanging={setBeChanging}
           />
         </div>
       </main>
