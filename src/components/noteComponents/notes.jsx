@@ -41,12 +41,7 @@ const Notes = ({
     var range = selection.getRangeAt(0);
     range.setStart(context, 0);
     var len = range.toString().length;
-    console.log(len, range.toString(), range, selection, context);
-    var range2 = selection.getRangeAt(0);
-    console.log(range2);
-    range2.setStart(context, 0);
-    (() => range.toString().length)();
-    console.log(range2.toString(), range2);
+    // console.log(len, range.toString(), range, selection, context);
 
     return {
       selection: selection,
@@ -81,23 +76,37 @@ const Notes = ({
     let context = restoreCaretPosition.context;
     // let range = restoreCaretPosition.range;
     let len = restoreCaretPosition.len;
-    let arg = restoreCaretPosition.arg;
+    // let arg = restoreCaretPosition.arg;
     // arg is number which move cursor to the right
     // console.log("context", context);
-    if (arg) {
-      var pos = getTextNodeAtPosition(context, len + arg);
-    } else {
-      var pos = getTextNodeAtPosition(context, len);
-    }
+    // console.log(moveTextCaretPosition);
+    // if (context.textContent.length == len && moveTextCaretPosition) {
+    //   // console.log("aded 1 enter more");
+    //   context.appendChild(document.createElement("br"));
+    // }
+
+    // if (arg) {
+    //   var pos = getTextNodeAtPosition(context, len);
+    // } else {
+    var pos = getTextNodeAtPosition(context, len);
+    // }
+    let arg = 1;
+    console.log(pos);
     selection.removeAllRanges();
     var range = new Range();
-    range.setStart(pos.node, pos.position);
+    if (context.textContent.length >= pos.length + arg) {
+      range.setStart(pos.node, pos.position + arg);
+    } else {
+      range.setStart(pos.node, pos.position);
+    }
+    console.log(range);
     selection.addRange(range);
   };
 
   useEffect(() => {
     if (restoreCaretPosition.context) {
       restoreCaret();
+      setMoveTextCaretPosition(false);
       // console.log("restoring caret");
     }
   }, [restoreCaretPosition]);
@@ -106,6 +115,17 @@ const Notes = ({
     // console.log("restoring setRestoreCaretPosition");
     // console.log("context", restoreCaretPosition.context);
     setRestoreCaretPosition(restoreCaretinfo);
+
+    setRestoreCaretPosition((old) => {
+      return {
+        selection: old.selection,
+        context: old.context,
+        range: old.range,
+        len: old.len,
+        arg: 0,
+      };
+    });
+
     // console.log("restored ", restoreCaretPosition);
   };
 
@@ -133,6 +153,21 @@ const Notes = ({
 
     setContent(becontent);
     // console.log("content seted", becontent);
+  };
+  const onInputToNote = (event, noteId) => {
+    var restoreCaretinfo = saveCaretPosition(event.target);
+    //   // Prism.highlightElement(this);
+    //   setRestoreCaretPositionFunction(restoreCaretinfo);
+    // console.log(event.key);
+    if (moveTextCaretPosition) {
+      // console.log("enter key pressed");
+      setRestoreCaretPositionFunction({ ...restoreCaretinfo, arg: 1 });
+    } else {
+      setRestoreCaretPositionFunction({ ...restoreCaretinfo, arg: 0 });
+    }
+
+    // console.log(event.target.innerHTML);
+    changeNoteTextValue(event.target.innerHTML, noteId);
   };
 
   if (contentNotes) {
@@ -176,12 +211,20 @@ const Notes = ({
           // }
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.keyCode === 13) {
-              console.log("enter key pressed");
-              // WARNING -- depricated
-              document.execCommand("insertHTML", false, "<br />");
-              if (noteTitle.value) {
-              }
+              // console.log("enter key pressed");
+              // WARNING -- execCommand is depricated
+              document.execCommand("insertHTML", false, "<br />\u00A0");
+
+              // var range = window.getSelection().getRangeAt(0);
+              // console.log("running insertHTML");
+              // range.insertNode(document.createElement("br"));
+              // range.insertNode(document.createTextNode("\u00A0"));
+
+              // e.target.appendChild(document.createElement("br"));
+              // e.target.appendChild(document.createTextNode("\u00A0"));
+              // onInputToNote(e, note.id, range);
               setMoveTextCaretPosition(true);
+              onInputToNote(e, note.id);
               e.preventDefault();
             }
 
@@ -198,17 +241,19 @@ const Notes = ({
             // }
           }}
           onInput={(e) => {
-            var restoreCaretinfo = saveCaretPosition(e.target);
-            //   // Prism.highlightElement(this);
-            //   setRestoreCaretPositionFunction(restoreCaretinfo);
-            console.log(e.key);
-            if (moveTextCaretPosition) {
-              console.log("enter key pressed");
-              setRestoreCaretPositionFunction({ ...restoreCaretinfo, arg: 0 });
-            } else {
-              setRestoreCaretPosition({ ...restoreCaretinfo, arg: 0 });
-            }
-            changeNoteTextValue(e.target.innerHTML, note.id);
+            onInputToNote(e, note.id);
+            // var restoreCaretinfo = saveCaretPosition(e.target);
+            // //   // Prism.highlightElement(this);
+            // //   setRestoreCaretPositionFunction(restoreCaretinfo);
+            // console.log(e.key);
+            // if (moveTextCaretPosition) {
+            //   console.log("enter key pressed");
+            //   setRestoreCaretPositionFunction({ ...restoreCaretinfo, arg: 0 });
+            // } else {
+            //   setRestoreCaretPosition({ ...restoreCaretinfo, arg: 0 });
+            // }
+            // console.log(e.target.innerHTML);
+            // changeNoteTextValue(e.target.innerHTML, note.id);
           }}
         >
           {/* {NoteTitleClickedId === note.id ? noteTitle.value : note.content} */}
