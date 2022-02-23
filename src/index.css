@@ -1282,6 +1282,7 @@ body {
   word-wrap: anywhere;
   outline: none !important;
   font-size: 1.2em;
+  display: inline-block
 }
 
 .Note.NoteMark {

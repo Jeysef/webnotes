@@ -30,6 +30,7 @@ const Notes = ({
     len: undefined,
     arg: 0,
   });
+  const [moveTextCaretPosition, setMoveTextCaretPosition] = useState(false);
 
   const copyOf = (Data) => {
     return JSON.parse(JSON.stringify(Data));
@@ -40,6 +41,12 @@ const Notes = ({
     var range = selection.getRangeAt(0);
     range.setStart(context, 0);
     var len = range.toString().length;
+    console.log(len, range.toString(), range, selection, context);
+    var range2 = selection.getRangeAt(0);
+    console.log(range2);
+    range2.setStart(context, 0);
+    (() => range.toString().length)();
+    console.log(range2.toString(), range2);
 
     return {
       selection: selection,
@@ -164,18 +171,44 @@ const Notes = ({
           }}
           data-cardid={cardId}
           data-noteid={note.id}
-          value={
-            NoteTitleClickedId === note.id ? noteTitle.value : note.content
-          }
+          // value={
+          //   NoteTitleClickedId === note.id ? noteTitle.value : note.content
+          // }
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.keyCode === 13) {
+              console.log("enter key pressed");
+              // WARNING -- depricated
+              document.execCommand("insertHTML", false, "<br />");
+              if (noteTitle.value) {
+              }
+              setMoveTextCaretPosition(true);
+              e.preventDefault();
+            }
+
+            // if (e.key === "Enter" || e.keyCode === 13) {
+            //   // insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
+            //   document.execCommand("insertHTML", false, "<br/>");
+            //   // const selectedTextRange = userSelection.getRangeAt(0);
+            //   // selectedTextRange.surroundContents(strongElement);
+
+            //   changeNoteTextValue(e.target.innerHTML, note.id);
+            //   // prevent the default behaviour of return key pressed
+            //   e.preventDefault();
+            //   // return false;
+            // }
+          }}
           onInput={(e) => {
             var restoreCaretinfo = saveCaretPosition(e.target);
-            // Prism.highlightElement(this);
-            setRestoreCaretPositionFunction(restoreCaretinfo);
-            if (e.key === "Enter" || e.keyCode === 13) {
-              setRestoreCaretPositionFunction({ ...restoreCaretinfo, arg: 1 });
+            //   // Prism.highlightElement(this);
+            //   setRestoreCaretPositionFunction(restoreCaretinfo);
+            console.log(e.key);
+            if (moveTextCaretPosition) {
+              console.log("enter key pressed");
+              setRestoreCaretPositionFunction({ ...restoreCaretinfo, arg: 0 });
+            } else {
+              setRestoreCaretPosition({ ...restoreCaretinfo, arg: 0 });
             }
-            changeNoteTextValue(e.target.textContent.toString(), note.id);
-            // setRestoreCaretPosition({...restoreCaretinfo, arg: 0});
+            changeNoteTextValue(e.target.innerHTML, note.id);
           }}
         >
           {/* {NoteTitleClickedId === note.id ? noteTitle.value : note.content} */}

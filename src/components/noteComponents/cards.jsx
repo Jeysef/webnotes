@@ -117,7 +117,8 @@ const Cards = ({
       alert("Please add a text");
       return;
     }
-    newNoteHandler(noteTitle.value, cardId);
+    const newNoteText = noteTitle.value + "<br/>";
+    newNoteHandler(newNoteText, cardId);
     setnoteTitle("");
   };
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
