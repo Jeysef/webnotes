@@ -166,7 +166,7 @@ const Navigation = ({
   const addBtn = document.querySelector(".a2hs");
 
   return (
-    <nav id="topBottomNavigation" class="topBottomNavigation">
+    <nav id="topBottomNavigation" className="topBottomNavigation">
       <div className="logo">
         <div>
           <img
@@ -281,7 +281,7 @@ const Navigation = ({
             <a href="#secondPage">{menu[4]}</a>
           </li>
           <li className="topBottomNavigation-menu-button">
-            <p >user: {username}</p>
+            <p>user: {username}</p>
           </li>
         </ul>
       </div>

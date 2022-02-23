@@ -81,10 +81,10 @@ const LoginForm = ({
               </span>
               <div className="logMode-bottomPanel"></div>
             </div>
-            <div class="login-form-wrapper">
+            <div className="login-form-wrapper">
               {/* <div className="login-form-title"></div> */}
               <form
-                class="login-form"
+                className="login-form"
                 onSubmit={(e) => {
                   e.preventDefault();
                   submit();

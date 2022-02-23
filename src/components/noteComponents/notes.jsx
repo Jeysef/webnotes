@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 
 const Notes = ({
@@ -22,52 +22,111 @@ const Notes = ({
     setBeChanging: PropTypes.func,
   };
   const [noteTitle, setNoteTitle] = useState({ value: "", id: -1 });
-  const [savedSelection, setsavedSelection] = useState();
-  // -----------
-
-  // ------------
+  const [NoteTitleClickedId, setNoteTitleClickedId] = useState(-1);
+  const [restoreCaretPosition, setRestoreCaretPosition] = useState({
+    selection: undefined,
+    context: undefined,
+    range: undefined,
+    len: undefined,
+    arg: 0,
+  });
 
   const copyOf = (Data) => {
     return JSON.parse(JSON.stringify(Data));
   };
-  // const onChangeHandler = (event) => {
-  //   console.log(event.target);
-  //   let targetValue = event.target.textContent;
-  //   //save caret position(s), so can restore when component reloads
-  //   let savedCaretPosition = doSave(event.target);
-  //   setCaretPosition(
-  //     {
-  //       newValue: targetValue,
-  //       caretPosition: savedCaretPosition,
-  //     },
-  //     () => {
-  //       //restore caret position(s)
-  //       doRestore(
-  //         document.getElementsByClassName("NoteTextarea")[noteTitle.id],
-  //         CaretPosition
-  //       );
-  //     }
-  //   );
-  // };
+
+  function saveCaretPosition(context) {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    range.setStart(context, 0);
+    var len = range.toString().length;
+
+    return {
+      selection: selection,
+      context: context,
+      range: range,
+      len: len,
+    };
+  }
+  function getTextNodeAtPosition(root, index) {
+    // console.log("root", root);
+    const NODE_TYPE = NodeFilter.SHOW_TEXT;
+    var treeWalker = document.createTreeWalker(
+      root,
+      NODE_TYPE,
+      function next(elem) {
+        if (index > elem.textContent.length) {
+          index -= elem.textContent.length;
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    );
+    var c = treeWalker.nextNode();
+    return {
+      node: c ? c : root,
+      position: index,
+    };
+  }
+
+  const restoreCaret = () => {
+    let selection = restoreCaretPosition.selection;
+    let context = restoreCaretPosition.context;
+    // let range = restoreCaretPosition.range;
+    let len = restoreCaretPosition.len;
+    let arg = restoreCaretPosition.arg;
+    // arg is number which move cursor to the right
+    // console.log("context", context);
+    if (arg) {
+      var pos = getTextNodeAtPosition(context, len + arg);
+    } else {
+      var pos = getTextNodeAtPosition(context, len);
+    }
+    selection.removeAllRanges();
+    var range = new Range();
+    range.setStart(pos.node, pos.position);
+    selection.addRange(range);
+  };
+
   useEffect(() => {
-    if (noteTitle.id !== -1) {
-      const becontent = copyOf(content);
-      for (var j = 0; j < becontent["content"][cardId]["notes"].length; j++) {
-        if (becontent["content"][cardId]["notes"][j]["id"] === noteTitle.id) {
-          becontent["content"][cardId]["notes"][j]["content"] = noteTitle.value;
-          break;
+    if (restoreCaretPosition.context) {
+      restoreCaret();
+      // console.log("restoring caret");
+    }
+  }, [restoreCaretPosition]);
+  const setRestoreCaretPositionFunction = (restoreCaretinfo) => {
+    // console.log("notrestored ", restoreCaretPosition);
+    // console.log("restoring setRestoreCaretPosition");
+    // console.log("context", restoreCaretPosition.context);
+    setRestoreCaretPosition(restoreCaretinfo);
+    // console.log("restored ", restoreCaretPosition);
+  };
+
+  const changeNoteTextValue = (text, noteid) => {
+    // console.log("notetext", text);
+    setNoteTitle({ value: text, id: noteid });
+    setNoteTitleClickedId(noteid);
+    // console.log("items", cardId, noteid, text);
+    const becontent = copyOf(content);
+
+    for (var cardID = 0; cardID < becontent["content"].length; cardID++) {
+      if (becontent["content"][cardID]["id"] === cardId) {
+        for (
+          var noteID = 0;
+          noteID < becontent["content"][cardID]["notes"].length;
+          noteID++
+        ) {
+          if (becontent["content"][cardID]["notes"][noteID]["id"] === noteid) {
+            becontent["content"][cardID]["notes"][noteID]["content"] = text;
+            break;
+          }
         }
       }
+    }
 
-      setContent(becontent);
-    }
-  }, [noteTitle]);
-  useEffect(() => {
-    if (beChanging) {
-      setNoteTitle({ value: "", id: -1 });
-      setBeChanging(false);
-    }
-  }, [beChanging]);
+    setContent(becontent);
+    // console.log("content seted", becontent);
+  };
 
   if (contentNotes) {
     return contentNotes.map((note) => (
@@ -96,21 +155,31 @@ const Notes = ({
         </div>
         <div
           className="NoteTextarea"
-          // contentEditable
-          // suppressContentEditableWarning="true"
           spellCheck="false"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          dangerouslySetInnerHTML={{
+            __html:
+              NoteTitleClickedId === note.id ? noteTitle.value : note.content,
+          }}
+          data-cardid={cardId}
+          data-noteid={note.id}
+          value={
+            NoteTitleClickedId === note.id ? noteTitle.value : note.content
+          }
           onInput={(e) => {
-            // onChangeHandler.bind(this);
-            // onChangeHandler(e);
-            // doSave("ff", note.id);
-            // setNoteTitle({ value: e.target.textContent, id: note.id });
-
-
-            console.log(e.target);
-            // doRestore(e.target, note.id);
+            var restoreCaretinfo = saveCaretPosition(e.target);
+            // Prism.highlightElement(this);
+            setRestoreCaretPositionFunction(restoreCaretinfo);
+            if (e.key === "Enter" || e.keyCode === 13) {
+              setRestoreCaretPositionFunction({ ...restoreCaretinfo, arg: 1 });
+            }
+            changeNoteTextValue(e.target.textContent.toString(), note.id);
+            // setRestoreCaretPosition({...restoreCaretinfo, arg: 0});
           }}
         >
-          {noteTitle.id === note.id ? noteTitle.value : note.content}
+          {/* {NoteTitleClickedId === note.id ? noteTitle.value : note.content} */}
+          {/* {note.content} */}
         </div>
         <div className="flex-evenly">
           {/*  button for menu  */}

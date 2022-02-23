@@ -156,7 +156,6 @@ const Cards = ({
         className="Card ms-depth-8 "
         key={card.id}
         draggable={draggable}
-        contentEditable="false"
         onDragStart={(e) => handletDragStart(e, carded)}
         onDragEnter={
           dragging

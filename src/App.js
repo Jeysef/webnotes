@@ -343,7 +343,7 @@ const MainApp = () => {
   };
   const deleteNote = (cardId, NoteId) => {
     const becontent = copyOf(content);
-    for (var i = 0; i < becontent["content"][cardId]["notes"].length; i++) {
+    for (let i = 0; i < becontent["content"][cardId]["notes"].length; i++) {
       if (becontent["content"][cardId]["notes"][i]["id"] === NoteId) {
         becontent["content"][cardId]["notes"].splice(i, 1);
         i--;
@@ -354,10 +354,10 @@ const MainApp = () => {
   };
   const deleteCard = async (cardId) => {
     const becontent = copyOf(content);
-    for (var i = 0; i < becontent["content"].length; i++) {
-      if (becontent["content"][i]["id"] === cardId) {
-        becontent["content"].splice(i, 1);
-        i--;
+    for (let cardID = 0; cardID < becontent["content"].length; cardID++) {
+      if (becontent["content"][cardID]["id"] === cardId) {
+        becontent["content"].splice(cardID, 1);
+        cardID--;
       }
     }
     // console.log(content, becontent);
@@ -365,12 +365,12 @@ const MainApp = () => {
   };
   const markNote = (cardId, noteId) => {
     const becontent = copyOf(content);
-    for (var i = 0; i < becontent["content"].length; i++) {
-      if (becontent["content"][i]["id"] === cardId) {
-        for (var j = 0; j < becontent["content"][i]["notes"].length; j++) {
-          if (becontent["content"][i]["notes"][j]["id"] === noteId) {
-            becontent["content"][i]["notes"][j]["mark"] =
-              !becontent["content"][i]["notes"][j]["mark"];
+    for (let cardID = 0; cardID < becontent["content"].length; cardID++) {
+      if (becontent["content"][cardID]["id"] === cardId) {
+        for (let noteID = 0; noteID < becontent["content"][cardID]["notes"].length; noteID++) {
+          if (becontent["content"][cardID]["notes"][noteID]["id"] === noteId) {
+            becontent["content"][cardID]["notes"][noteID]["mark"] =
+              !becontent["content"][cardID]["notes"][noteID]["mark"];
           }
         }
       }
@@ -412,7 +412,7 @@ const MainApp = () => {
     }
   };
 
-  const card = useRef();
+  // const card = useRef();
 
   useEffect(() => {
     const getData = async () => {
@@ -452,7 +452,7 @@ const MainApp = () => {
         handleLogIn={handleLogIn}
         handleSignUp={handleSignUp}
       />
-      <main id="main" class="main">
+      <main id="main" className="main">
         <div
           id="content"
           className="wrapper"
@@ -463,7 +463,7 @@ const MainApp = () => {
           <div id="overlay" onClick={toogleOverlay}></div>
           <NewCardForm NewCardHandler={AddNewCardHandler} />
           <Cards
-            ref={card}
+            // ref={card}
             content={content}
             setContent={setContent}
             newNoteHandler={AddNewNoteHandler}
@@ -475,7 +475,7 @@ const MainApp = () => {
           />
         </div>
       </main>
-      <div id="secondPage" class="main">
+      <div id="secondPage" className="main">
         <AboutMeApp />
       </div>
     </div>
