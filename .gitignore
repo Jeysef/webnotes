@@ -21,3 +21,18 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# MY
+corepack
+corepack.cmd
+CHANNELLOG.md
+install_tools.bat
+LICENSE
+node_etw_provider.man
+node.exe
+nodevars.bat
+npm
+npm.cmd
+npx
+npx.cmd
