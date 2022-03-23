@@ -80,7 +80,7 @@ Use a more readable tab size (opinionated).
   --second-lightblue: #82d5d5;
   --second-bg-main: var(--second-darkblue);
   --second-bg-second: var(--second-lightblue);
-  --login_form-button-bg: #36ceec;
+  --login_form-button-bg: #ffffff;
   /* ? My collor pallete */
 }
 
@@ -1792,7 +1792,7 @@ footer a:hover {
   top: 0;
   /* transform: translateX(-50%); */
   margin: auto;
-  background: aqua;
+  background: var(--main-button-green);
   -ms-grid-column-align: right;
   justify-self: right;
   -webkit-box-pack: center;
@@ -1804,6 +1804,7 @@ footer a:hover {
   border-radius: 0.25rem;
   border-top-left-radius: 0;
   border-bottom-right-radius: 0;
+  cursor: pointer;
 }
 
 .menu-window-center {
@@ -1837,7 +1838,7 @@ overflow: hidden;
 text-decoration: none;
 background-color: transparent;
 text-align: center;
-cursor: pointer;
+cursor: default;
 white-space: normal;
 background-color: var(--main-button);
 }
@@ -1849,6 +1850,7 @@ background-color: var(--main-button);
   align-items: center;
   justify-content: space-evenly;
   transition: 0.5s;
+  cursor: pointer;
 }
 .logMode ul {
   display: flex;
@@ -1886,7 +1888,7 @@ background-color: var(--main-button);
   transition: .5s;
   margin-left: 5px;
 
-  box-shadow: inset rgba(136, 165, 191, 0.48) 6px 2px 16px 0px;
+  /* box-shadow: inset rgba(136, 165, 191, 0.48) 6px 2px 16px 0px; */
 }
 .logMode-indicator div:nth-child(1) {
   position: absolute;
@@ -1924,6 +1926,9 @@ height: 10%;
 bottom: 0;
 left: 0;
 background-color: var(--login_form-button-bg);
+}
+.logMode-input {
+  border-radius: 0.25rem;
 }
 
 .login-form > div,

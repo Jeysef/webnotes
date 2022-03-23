@@ -10,10 +10,9 @@ const Navigation = ({
   setUsername,
   password,
   setPassword,
-  toogleOverlay,
   toogleLoginForm,
   postContent,
-  signUp,
+  toogleSignupForm,
   createNewUser,
 }) => {
   const toogleBackgroundColourMenu = () => {};
@@ -182,7 +181,7 @@ const Navigation = ({
         <ul className="topBottomNavigation-menu-list">
           <li
             className={
-              username == "load"
+              username === "load" || username === ""
                 ? "topBottomNavigation-menu-button btn-save-pasive"
                 : "topBottomNavigation-menu-button btn-save-active"
             }
@@ -251,8 +250,7 @@ const Navigation = ({
                 left: "0",
               }}
               onClick={() => {
-                toogleOverlay();
-                toogleLoginForm();
+              toogleLoginForm();
               }}
             ></div>
             <p>{menu[2]}</p>
@@ -273,7 +271,7 @@ const Navigation = ({
                 position: "absolute",
                 left: "0",
               }}
-              onClick={() => signUp()}
+              onClick={() => toogleSignupForm()}
             ></div>
             <p>{menu[3]}</p>
           </li>
