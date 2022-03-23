@@ -26,7 +26,7 @@ yarn-error.log*
 # MY
 corepack
 corepack.cmd
-CHANNELLOG.md
+CHANGELOG.md
 install_tools.bat
 LICENSE
 node_etw_provider.man
