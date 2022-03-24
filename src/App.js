@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import $ from "jquery";
-import jQuery from "jquery";
 // import mousewheel from "./components/mousewheel";
 
 // import my components
@@ -80,7 +79,7 @@ const MainApp = () => {
 
         // catch errors
         if (Object.entries(allData).length === 0) {
-            alert("couldnt fetch from database");
+            alert("couldnt fetch from database right now. \nPlease try again.");
         } else if (!allData[username]) {
             alert("User do not exist.");
         } else {
@@ -295,16 +294,16 @@ const MainApp = () => {
         // save for sake
         postContent();
     };
-    const UrlExists = (url, cb) => {
-        jQuery.ajax({
-            url: url,
-            dataType: "text",
-            type: "GET",
-            complete: function (xhr) {
-                if (typeof cb === "function") cb.apply(this, [xhr.status]);
-            },
-        });
-    };
+    // const UrlExists = (url, cb) => {
+    //     jQuery.ajax({
+    //         url: url,
+    //         dataType: "text",
+    //         type: "GET",
+    //         complete: function (xhr) {
+    //             if (typeof cb === "function") cb.apply(this, [xhr.status]);
+    //         },
+    //     });
+    // };
 
     const copyOf = (Data) => {
         return JSON.parse(JSON.stringify(Data));
@@ -447,7 +446,7 @@ const MainApp = () => {
     const changeLoginModeTop = (text) => {
         document.querySelectorAll(".logMode-list").forEach((item) => {
             item.classList.remove("active");
-            if ((item.textContent == text)) {
+            if ((item.textContent === text)) {
                 item.classList.add("active");
             }
         });

@@ -1,5 +1,5 @@
 import { FaTimes } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const LoginForm = ({
     toogleOverlay,
@@ -16,9 +16,9 @@ const LoginForm = ({
     const submit = () => {
         toogleLoginForm();
 
-        if (loginFormMode == "Log In") {
+        if (loginFormMode === "Log In") {
             handleLogIn({ username: vusername, password: vpassword });
-        } else if (loginFormMode == "Sign Up") {
+        } else if (loginFormMode === "Sign Up") {
             handleSignUp({ username: vusername, password: vpassword });
         }
     };
@@ -31,9 +31,9 @@ const LoginForm = ({
             .forEach((item) => item.classList.remove("active"));
         clicked.classList.add("active");
 
-        if (clicked.textContent == "Log In") {
+        if (clicked.textContent === "Log In") {
             setLoginFormMode("Log In");
-        } else if (clicked.textContent == "Sign Up") {
+        } else if (clicked.textContent === "Sign Up") {
             // document.getElementById("logMode-btn").value = "Sign Up";
             setLoginFormMode("Sign Up");
         }
@@ -49,15 +49,7 @@ const LoginForm = ({
                     <div className="NotePopupTitle">
                         <div
                             className="NotePopupTitleCild logMode-wrapper"
-                            style={{
-                                padding: "0",
-                                paddingTop: "10px",
-                                justifyContent: "start",
-                                width: "100%",
-                                height: "45px",
-                                display: "grid",
-                                overflow: "visible",
-                            }}
+                            
                         >
                             <div className="logMode">
                                 <ul>
