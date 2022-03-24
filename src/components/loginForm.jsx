@@ -94,7 +94,12 @@ const LoginForm = ({
                                     submit();
                                 }}
                             >
-                                <div>username</div>
+                                <div className="login-form-insidewrapper">
+
+                                <div style={{
+                                    alignItems: "center",
+                                    display: "flex",
+                                }}>username</div>
                                 <input
                                     class="logMode-input"
                                     type="text"
@@ -103,7 +108,12 @@ const LoginForm = ({
                                         setVusername(e.target.value);
                                     }}
                                 />
-                                <div>password</div>
+                                        </div>
+                                        <div className="login-form-insidewrapper">
+                                <div style={{
+                                    alignItems: "center",
+                                    display: "flex",
+                                }}>password</div>
                                 <input
                                     class="logMode-input"
                                     type="password"
@@ -112,6 +122,7 @@ const LoginForm = ({
                                         setVpassword(e.target.value);
                                     }}
                                 />
+                                </div>
                                 <input
                                     id="logMode-btn"
                                     type="submit"

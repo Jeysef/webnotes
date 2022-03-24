@@ -1775,13 +1775,8 @@ footer a:hover {
 /* login */
 
 .login-form {
-  display: -ms-grid;
-  display: grid;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-grid-columns: auto auto;
-  grid-template-columns: auto auto;
+  display: block;
+
 }
 
 .login-form-x {
@@ -1936,25 +1931,23 @@ background-color: var(--login_form-button-bg);
 }
 .logMode-input {
   border-radius: 0.25rem;
-}
-
-.login-form > div,
-.login-form > input {
   padding: 5px;
   margin: 5px;
-}
-
-.login-form > input:nth-of-type(1),
-.login-form > input:nth-of-type(2) {
   background-color: var(--main-gray1);
+  max-width: 60%;
 }
 
-.login-form > input:last-of-type {
-  -ms-grid-column: 1;
-  grid-column-start: 1;
-  -ms-grid-column-span: 2;
-  grid-column-end: 3;
+
+#logMode-btn {
+  display: flex;
+  width: 90%;
+  margin: auto auto 8px auto;
   /* background-color: var(--main-button-green); */
+}
+
+.login-form-insidewrapper {
+  display: flex;
+  justify-content: space-around;
 }
 
 /* ?login */
