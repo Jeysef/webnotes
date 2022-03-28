@@ -78,10 +78,11 @@ const MainApp = () => {
         // console.log(allData, allData[username]);
 
         // catch errors
+        console.log("AllData", allData);
         if (Object.entries(allData).length === 0) {
-            alert("couldnt fetch from database right now. \nPlease try again.");
+            alert("Couldnt fetch from database right now. \nPlease try again.");
         } else if (!allData[username]) {
-            alert("User do not exist.");
+            alert("User does not exist.");
         } else {
             console.log("DATA_FETCHED_SUCCESFULLY");
             setUsername(username);
@@ -191,7 +192,7 @@ const MainApp = () => {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data, textStatus, jqXHR) {
-                alert("succes");
+                alert("successfully saved");
                 // load sended json
                 $.get(data.uri, function (data, textStatus, jqXHR) {
                     //   var json = JSON.stringify(data);
